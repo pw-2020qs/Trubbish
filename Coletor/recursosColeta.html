@@ -26,7 +26,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="coletor.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Minha Conta</a></li>
                         <li class="nav-item dropdown">
                             <a id="specialDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -35,7 +35,7 @@
                                 <li><a class="dropdown-item" href="#">Coletas Pendentes</a></li>
                                 <li><a class="dropdown-item" href="#">Histórico de Coletas</a></li>
                                 <li><a class="dropdown-item" href="#">Histórico de Entregas</a></li>
-                                <li><a class="dropdown-item" href="recursosColeta.html">Recursos para Coletas</a></li>
+                                <li><a class="dropdown-item" href="#">Recursos para Coletas</a></li>
                                 <li><a class="dropdown-item" href="#">Gráficos de Desempenho</a></li>
                             </ul>
                         </li>
@@ -53,6 +53,56 @@
             </nav>
         </div>
     </header>
+
+    <div class="card-deck p-5 ">
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body  p-5 ">
+                <h3 class="card-title text-center">Capacidade de Armazenamento</h3>
+                <div class="container my-4">
+                    <p>Fazer o pie chart interativo aqui</p>
+                    <div>
+                      <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                    </div>                
+                </div>
+
+                <div class="input-group-md mb-3">
+                    <input type="text" class="form-control" placeholder="Capacidade de Armazenamento" aria-label="Usuário"
+                        aria-describedby="basic-addon2">
+                    <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+            <div class="card-body  p-5 ">
+                <h3 class="card-title text-center">Frota de Caminhões</h3>
+                <div class="container my-4">
+                    <p>Fazer o pie chart interativo aqui</p>
+                    <div>
+                      <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                    </div>                
+                </div>
+                <div class="input-group-md mb-3">
+                    <input type="text" class="form-control" placeholder="Quantidade de Caminhões na Frota" aria-label="Usuário"
+                        aria-describedby="basic-addon2">
+                    <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+
+            <div class="card-body p-5 ">
+                <h3 class="card-title text-center">Alterações Recentes</h3>
+                <p>Fazer tabela aqui</p>
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- jQuery e Ajax -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
