@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trubish - Cadastro</title>
+    <title>Trubish - Alterar cadastro</title>
 
     <!-- Bootstrap - referências para as folhas de estilo -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -45,37 +45,12 @@
                     </ul>
 
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item mr-2">
-                            <div class="input-group-sm">
-                                <input type="text" class="form-control" placeholder="Usuário" aria-label="Usuário"
-                                    aria-describedby="basic-addon2">
-                            </div>
-                        </li>
-                        <li class="nav-item mr-2">
-                            <div class="input-group-sm">
-                                <input type="password" class="form-control" placeholder="Senha" aria-label="Senha"
-                                    aria-describedby="basic-addon2">
-                            </div>
-                        </li>
-
-                        <li class="nav-item mr-2">
-                            <form class="form-inline">
-                                <button class="btn btn-outline-light" type="submit">Login</button>
+                        <li class="nav-item mr-4"><a class="nav-link" href="#"><span class="fa fa-user fa-lg"></span>  Nome</a></li>
+                        <li class="nav-item">
+                            <form class="form-inline" method="POST" action="../Geral/paginaPrincipal.html">
+                                <button class="btn btn-outline-light" type="submit">Log out</button>
                             </form>
                         </li>
-
-                        <li class="nav-item mr-2">
-                            <form class="form-inline">
-                                <button class="btn btn-outline-light" type="submit">Cadastrar</button>
-                            </form>
-                        </li>
-
-                        <li class="nav-item mr-2">
-                            <form class="form-inline">
-                                <button class="btn btn-outline-light" type="submit">Esqueceu a Senha?</button>
-                            </form>
-                        </li>
-
                     </ul>
                 </div>
             </nav>
@@ -86,41 +61,41 @@
     <div class="card-md">
 
         <div class="card-body p-5 ">
-            <h3 class="card-title text-center">Casdastro</h3>
+            <h3 class="card-title text-center">Dados cadastrais</h3>
             <p class="card-text">
             <form>
                 <div class="input-group-md mb-3">
-                    <input type="text" class="form-control" placeholder="Nome da empresa" aria-label="Usuário"
+                    <input disabled type="text" class="form-control" placeholder="Nome da empresa" aria-label="Nome da empresa"
                         aria-describedby="basic-addon2">
                 </div>
                 <div class="input-group-md mb-3">
-                    <input type="text" class="form-control" placeholder="E-mail" aria-label="Usuário"
+                    <input disabled type="text" class="form-control" placeholder="E-mail" aria-label="email"
                         aria-describedby="basic-addon2">
                 </div>
                 <div class="input-group-md mb-3">
-                    <input type="text" class="form-control" placeholder="Nome de usuário" aria-label="Usuário"
+                    <input disabled type="text" class="form-control" placeholder="Nome de usuário" aria-label="Usuário"
                         aria-describedby="basic-addon2">
                 </div>
                 <div class="input-group-md mb-3">
-                    <input type="password" class="form-control" placeholder="Senha" aria-label="Usuário"
+                    <input disabled type="password" class="form-control" placeholder="Senha" aria-label="Senha"
                         aria-describedby="basic-addon2">
                     <div class="progress progress-bar progress-bar-striped bg-success" role="progressbar"
-                        style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="input-group-md mb-3">
-                    <input type="text" class="form-control" placeholder="Telefone" aria-label="Usuário"
+                <div  class="input-group-md mb-3">
+                    <input disabled type="text" class="form-control" placeholder="Telefone" aria-label="Telefone"
                         aria-describedby="basic-addon2">
                 </div>
                 <div class="input-group-md mb-3">
-                    <input type="text" class="form-control" placeholder="CNPJ" aria-label="Usuário"
+                    <input disabled type="text" class="form-control" placeholder="CNPJ" aria-label="CNPJ"
                         aria-describedby="basic-addon2">
                 </div>
                 <div class="dropdown mb-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    <button disabled class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ramo da empresa
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div disabled class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Química</a>
                         <a class="dropdown-item" href="#">Eletronicos</a>
                         <a class="dropdown-item" href="#">Construção</a>
@@ -128,7 +103,8 @@
                 </div>
 
                 <div class="input-group-md mb-3">
-                    <button class="btn btn-secondary btn-lg btn-block" type="submit">Cadastrar</button>
+                    <button class="btn btn-secondary btn-lg " type="submit">Voltar</button>
+                    <button class="btn btn-secondary btn-lg " type="submit">Alterar cadastro</button>
                 </div>
 
 
