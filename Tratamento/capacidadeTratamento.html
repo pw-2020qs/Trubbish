@@ -33,7 +33,7 @@
                                 data-toggle="dropdown">Menu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="entregasPendentes.html">Entregas Pendentes</a></li>
-                                <li><a class="dropdown-item" href="#">Histórico de Entregas</a></li>
+                                <li><a class="dropdown-item" href="historicoEntregas.html">Histórico de Entregas</a></li>
                                 <li><a class="dropdown-item" href="capacidadeTratamento.html">Capacidade de Tratamento</a></li>
                             </ul>
                         </li>
@@ -89,15 +89,15 @@
             <div class="card">
                 <div class="card-body p-5 d-flex flex-column">
                     <h3 class="card-title text-center">Atualizar Capacidade</h3>
-                    <div class="input-group-md mb-3 mt-auto">
+                    <div class="input-group-md mb-3 mt-auto text-center">
                         <input type="text" class="form-control mb-1" placeholder="Quantidade Tratada"
                             aria-label="Usuário" aria-describedby="basic-addon2">
-                        <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+                        <button class="btn btn-outline-light" type="submit">Atualizar</button>
                     </div>
-                    <div class="input-group-md mb-3 mt-auto">
+                    <div class="input-group-md mb-3 mt-auto text-center">
                         <input type="text" class="form-control mb-1" placeholder="Quantidade Recebida"
                             aria-label="Usuário" aria-describedby="basic-addon2">
-                        <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+                        <button class="btn btn-outline-light" type="submit">Atualizar</button>
                     </div>
                 </div>
             </div>
@@ -169,11 +169,11 @@
         var chartMetal = new Chart(canvasMetal, {
             type: 'pie',
             data: {
-                labels: ["Ocupado", "Livre"],
+                labels: ["Livre", "Ocupado"],
                 datasets: [{
                     data: [10, 20],
-                    backgroundColor: ["#F7464A", "#46BFBD"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                    backgroundColor: ["#30BC30", "#F7464A"],
+                    hoverBackgroundColor: ["#43CA43", "#FF5A5E"]
                 }]
             },
             options: {
@@ -185,11 +185,11 @@
         var chartVidro = new Chart(canvasVidro, {
             type: 'pie',
             data: {
-                labels: ["Ocupado", "Livre"],
+                labels: ["Livre", "Ocupado"],
                 datasets: [{
-                    data: [20, 5],
-                    backgroundColor: ["#F7464A", "#46BFBD"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                    data: [5, 25],
+                    backgroundColor: ["#30BC30", "#F7464A"],
+                    hoverBackgroundColor: ["#43CA43", "#FF5A5E"]
                 }]
             },
             options: {
@@ -201,11 +201,11 @@
         var chartPapel = new Chart(canvasPapel, {
             type: 'pie',
             data: {
-                labels: ["Ocupado", "Livre"],
+                labels: ["Livre", "Ocupado"],
                 datasets: [{
-                    data: [5, 25],
-                    backgroundColor: ["#F7464A", "#46BFBD"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                    data: [20, 5],
+                    backgroundColor: ["#30BC30", "#F7464A"],
+                    hoverBackgroundColor: ["#43CA43", "#FF5A5E"]
                 }]
             },
             options: {
@@ -217,11 +217,11 @@
         var chartPlastico = new Chart(canvasPlastico, {
             type: 'pie',
             data: {
-                labels: ["Ocupado", "Livre"],
+                labels: ["Livre", "Ocupado"],
                 datasets: [{
-                    data: [1,1],
-                    backgroundColor: ["#F7464A", "#46BFBD"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                    data: [1, 1],
+                    backgroundColor: ["#30BC30", "#F7464A"],
+                    hoverBackgroundColor: ["#43CA43", "#FF5A5E"]
                 }]
             },
             options: {
@@ -233,11 +233,11 @@
         var chartOrganico = new Chart(canvasOrganico, {
             type: 'pie',
             data: {
-                labels: ["Ocupado", "Livre"],
+                labels: ["Livre", "Ocupado"],
                 datasets: [{
-                    data: [1,1],
-                    backgroundColor: ["#F7464A", "#46BFBD"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                    data: [1, 1],
+                    backgroundColor: ["#30BC30", "#F7464A"],
+                    hoverBackgroundColor: ["#43CA43", "#FF5A5E"]
                 }]
             },
             options: {

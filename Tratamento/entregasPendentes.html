@@ -33,7 +33,7 @@
                                 data-toggle="dropdown">Menu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="entregasPendentes.html">Entregas Pendentes</a></li>
-                                <li><a class="dropdown-item" href="#">Histórico de Entregas</a></li>
+                                <li><a class="dropdown-item" href="historicoEntregas.html">Histórico de Entregas</a></li>
                                 <li><a class="dropdown-item" href="capacidadeTratamento.html">Capacidade de Tratamento</a></li>
                             </ul>
                         </li>
@@ -63,9 +63,9 @@
                             <tr>
                                 <th scope="col">Horário</th>
                                 <th scope="col">Data</th>
-                                <th scope="col">Beneficiário</th>
+                                <th scope="col">Empresa de gerenciamento</th>
                                 <th scope="col">Resíduo</th>
-                                <th scope="col">Frota Utilizada</th>
+								<th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,28 +74,44 @@
                                 <td scope="row">28/10/2020</td>
                                 <td scope="row">Otto</td>
                                 <td scope="row">15t Vidro</td>
-                                <td scope="row">4 caminhões</td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">12:30</td>
                                 <td scope="row">30/10/2020</td>
                                 <td scope="row">Thornton</td>
                                 <td scope="row">5t Vidro</td>
-                                <td scope="row">2 caminhões</td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">14:30</td>
                                 <td scope="row">10/11/2020</td>
                                 <td scope="row">The Bird</td>
                                 <td scope="row">2t Vidro</td>
-                                <td scope="row">1 caminhão</td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">10:30</td>
                                 <td scope="row">30/11/2020</td>
                                 <td scope="row">Thornton</td>
                                 <td scope="row">20t Metal</td>
-                                <td scope="row">5 caminhões</td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,8 +121,68 @@
         
         <div class="card">
             <div class="card-body p-5">
-                <h3 class="card-title text-center">Informações de Coleta</h3>
-                
+                <h3 class="card-title text-center">Informações da entrega</h3>
+                <br>
+                <div class="card-text">
+                    <div class="text-center">
+                        <p>
+                           <span>ID:</span>
+                           <span id="idEntrega">#00000444</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Data:</span>
+                           <span id="dataEntrega">28/10/2020</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Resíduo:</span>
+                           <span id="residuoEntrega">Vidro</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Quantidade:</span>
+                           <span id="quantidadeEntrega">15t</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Empresa:</span>
+                           <span id="nomeEntrega">Otto</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>CNPJ:</span>
+                           <span id="cnpjEntrega">11.111.111/1111-11</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Endereço:</span>
+                           <span id="enderecoEntrega">rua otto 9999</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Telefone:</span>
+                           <span id="telefoneEntrega">(99)99999-9999</span> 
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                           <span>Email:</span>
+                           <span id="emailEntrega">otto_gerenciamento@email.com</span> 
+                        </p>
+                    </div>                    
+                    <div class="text-center">
+                        <button class="btn btn-outline-light" type="submit">Confirmar entrega</button>
+                        <button class="btn btn-outline-light" type="submit" style="background-color: #E7B756;">Cancelar entrega</button>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -5,3 +5,15 @@
 .nav-icon {
     width: 55px;
 }
+
+.btn{
+    background-color: green;
+    border-radius: 1.1ex;
+    border: 2px solid black;
+}
+
+.btn:hover{
+    background-color: green;
+    border: 2px solid black;
+    color: black;
+}
