@@ -59,9 +59,25 @@
                 <div class="card-body p-5 d-flex flex-column">
                     <h3 class="card-title text-center">Capacidade</h3>
                     <div class="container my-4">
-                        <p>Fazer o pie chart interativo aqui</p>
                         <div>
-                            <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                            <p>Metal</p>
+                            <canvas id="pieChartMetal"></canvas>
+                        </div>
+                        <div>
+                            <p>Vidro</p>
+                            <canvas id="pieChartVidro"></canvas>
+                        </div>
+                        <div>
+                            <p>Papel</p>
+                            <canvas id="pieChartPapel"></canvas>
+                        </div>
+                        <div>
+                            <p>Plástico</p>
+                            <canvas id="pieChartPlastico"></canvas>
+                        </div>
+                        <div>
+                            <p>Orgânico</p>
+                            <canvas id="pieChartOrganico"></canvas>
                         </div>
                     </div>
                 </div>
@@ -142,5 +158,92 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <!-- JavaScript próprio -->
+    <script>
+        // Pie Chart Desempenho Empresa de Tratamento
+        var canvasMetal = document.getElementById("pieChartMetal").getContext('2d');
+        var chartMetal = new Chart(canvasMetal, {
+            type: 'pie',
+            data: {
+                labels: ["Ocupado", "Livre"],
+                datasets: [{
+                    data: [10, 20],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        var canvasVidro = document.getElementById("pieChartVidro").getContext('2d');
+        var chartVidro = new Chart(canvasVidro, {
+            type: 'pie',
+            data: {
+                labels: ["Ocupado", "Livre"],
+                datasets: [{
+                    data: [20, 5],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        var canvasPapel = document.getElementById("pieChartPapel").getContext('2d');
+        var chartPapel = new Chart(canvasPapel, {
+            type: 'pie',
+            data: {
+                labels: ["Ocupado", "Livre"],
+                datasets: [{
+                    data: [5, 25],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        var canvasPlastico = document.getElementById("pieChartPlastico").getContext('2d');
+        var chartPlastico = new Chart(canvasPlastico, {
+            type: 'pie',
+            data: {
+                labels: ["Ocupado", "Livre"],
+                datasets: [{
+                    data: [1,1],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        var canvasOrganico = document.getElementById("pieChartOrganico").getContext('2d');
+        var chartOrganico = new Chart(canvasOrganico, {
+            type: 'pie',
+            data: {
+                labels: ["Ocupado", "Livre"],
+                datasets: [{
+                    data: [1,1],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 </body>
 </html>

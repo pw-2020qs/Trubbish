@@ -58,11 +58,11 @@
             <div class="card-body p-5">
                 <h3 class="card-title text-center">Gráficos Gerais</h3>
                 <div class="container my-4">
-                    <p>Fazer o pie chart interativo aqui</p>
                     <div>
-                        <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                        <canvas id="pieChartGeral"></canvas>
                     </div>
                 </div>
+                <p>Em toneladas.</p>
             </div>
         </div>
     
@@ -82,6 +82,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
                                 <td scope="row">10:30</td>
                                 <td scope="row">28/10/2020</td>
@@ -126,5 +127,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <!-- JavaScript próprio -->
+    <script>
+        // Pie Chart Desempenho Empresa de Tratamento
+        var canvasGeral = document.getElementById("pieChartGeral").getContext('2d');
+        var chartGeral = new Chart(canvasGeral, {
+            type: 'pie',
+            data: {
+                labels: ["Metal", "Vidro", "Papel", "Plástico", "Orgânico"],
+                datasets: [{
+                    data: [15, 25, 0, 5, 0],
+                    backgroundColor: ["#F7464A", "#02c39a", "#949FB1", "#4361ee", "#FDB45C"],
+                    hoverBackgroundColor: ["#FF5A5E", "#46BFBD", "#A8B3C5", "#4895ef", "#FFC870"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 </body>
 </html>
