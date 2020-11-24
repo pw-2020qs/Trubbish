@@ -60,10 +60,7 @@
             <div class="card-body p-5 d-flex flex-column">
                 <h3 class="card-title text-center">Por Região</h3>
                 <div class="container my-4">
-                    <p>Fazer o pie chart interativo aqui</p>
-                    <div>
-                        <canvas id="pieChart1" style="max-width: 500px;"></canvas>
-                    </div>
+                    <canvas id="pieChartRegiao"></canvas>
                 </div>
             </div>
         </div>
@@ -72,10 +69,7 @@
             <div class="card-body p-5 d-flex flex-column">
                 <h3 class="card-title text-center">Por Tipo de Consumidor</h3>
                 <div class="container my-4">
-                    <p>Fazer o pie chart interativo aqui</p>
-                    <div>
-                        <canvas id="pieChart2" style="max-width: 500px;"></canvas>
-                    </div>
+                    <canvas id="pieChartTipoConsumidor"></canvas>
                 </div>
             </div>
         </div>
@@ -84,10 +78,7 @@
             <div class="card-body p-5 d-flex flex-column">
                 <h3 class="card-title text-center">Por Beneficiário</h3>
                 <div class="container my-4">
-                    <p>Fazer o pie chart interativo aqui</p>
-                    <div>
-                        <canvas id="pieChart3" style="max-width: 500px;"></canvas>
-                    </div>
+                    <canvas id="pieChartBeneficiario"></canvas>
                 </div>
             </div>
         </div>
@@ -97,14 +88,74 @@
     <!-- jQuery e Ajax -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
     <!-- Bootstrap- referências para JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <!-- JavaScript próprio -->
+    <script>
+        // Pie Chart por Região
+        var canvasRegiao = document.getElementById("pieChartRegiao").getContext('2d');
+        var chartRegiao = new Chart(canvasRegiao, {
+            type: 'pie',
+            data: {
+                labels: ["Sudeste", "Sul", "Centro-Oeste", "Nordeste", "Norte"],
+                datasets: [{
+                    data: [300, 50, 100, 40, 120],
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Pie Chart por Tipo de Consumidor
+        var canvasTipoConsumidor = document.getElementById("pieChartTipoConsumidor").getContext('2d');
+        var chartTipoConsumidor = new Chart(canvasTipoConsumidor, {
+            type: 'pie',
+            data: {
+                labels: ["Indústria", "Escritório", "Outros"],
+                datasets: [{
+                    data: [300, 200, 70],
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Pie Chart por Beneficiário
+        var canvasBeneficiario = document.getElementById("pieChartBeneficiario").getContext('2d');
+        var chartBeneficiario = new Chart(canvasBeneficiario, {
+            type: 'pie',
+            data: {
+                labels: ["Otto", "Thornton", "The Bird", "Antares"],
+                datasets: [{
+                    data: [150, 250, 100, 50],
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 </body>
 </html>

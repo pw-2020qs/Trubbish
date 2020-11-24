@@ -61,10 +61,7 @@
                 <div class="card-body p-5 d-flex flex-column">
                     <h3 class="card-title text-center">Capacidade de Armazenamento</h3>
                     <div class="container my-4">
-                        <p>Fazer o pie chart interativo aqui</p>
-                        <div>
-                            <canvas id="pieChart" style="max-width: 500px;"></canvas>
-                        </div>
+                        <canvas id="pieChartArmazenamento"></canvas>
                     </div>
     
                     <div class="input-group-md mb-3 mt-auto">
@@ -82,10 +79,7 @@
                 <div class="card-body p-5 d-flex flex-column">
                     <h3 class="card-title text-center">Frota de Caminhões</h3>
                     <div class="container my-4">
-                        <p>Fazer o pie chart interativo aqui</p>
-                        <div>
-                            <canvas id="pieChart" style="max-width: 500px;"></canvas>
-                        </div>
+                        <canvas id="pieChartCaminhoes"></canvas>
                     </div>
                     <div class="input-group-md mb-3 mt-auto">
                         <input type="text" class="form-control mb-1" placeholder="Quantidade de Caminhões na Frota"
@@ -142,14 +136,57 @@
     <!-- jQuery e Ajax -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
     <!-- Bootstrap- referências para JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <!-- JavaScript próprio -->
+    <script>
+        // Pie Chart da Capacidade de Armazenamento
+        var canvasArmazenamento = document.getElementById("pieChartArmazenamento").getContext('2d');
+        var chartArmazenamento = new Chart(canvasArmazenamento, {
+            type: 'pie',
+            data: {
+                labels: ["Espaço utilizado", "Espaço disponível"],
+                datasets: [{
+                    data: [220, 180],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Pie Chart da Frota de Caminhões
+        var canvasCaminhoes = document.getElementById("pieChartCaminhoes").getContext('2d');
+        var chartCaminhoes = new Chart(canvasCaminhoes, {
+            type: 'pie',
+            data: {
+                labels: ["Caminhões em uso", "Caminhões disponíveis"],
+                datasets: [{
+                    data: [21, 7],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
 </body>
 </html>
