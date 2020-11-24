@@ -23,6 +23,14 @@ body {
     color: black;
 }
 
+.btn-danger {
+    background-color: #E7B756;
+}
+
+.btn-danger:hover {
+    background-color: #E7B756;
+}
+
 canvas {
     width: 100%;
     height: auto;

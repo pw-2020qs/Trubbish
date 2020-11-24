@@ -71,25 +71,41 @@
                                 <td scope="row">Recebido</td>
                                 <td scope="row">22/11/2020</td>
                                 <td scope="row">Plástico</td>
-                                <td scope="row"><a href="#">Detalhes</a></td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">Em andamento</td>
                                 <td scope="row">03/11/2020</td>
                                 <td scope="row">Vidro</td>
-                                <td scope="row"><a href="#">Detalhes</a></td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">Tratado</td>
                                 <td scope="row">12/10/2020</td>
                                 <td scope="row">Metal</td>
-                                <td scope="row"><a href="#">Detalhes</a></td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">Tratado</td>
                                 <td scope="row">01/10/2020</td>
                                 <td scope="row">Orgânico</td>
-                                <td scope="row"><a href="#">Detalhes</a></td>
+                                <td scope="row">
+                                    <form class="form-inline" method="POST" action="#">
+                                        <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -102,38 +118,66 @@
             <div class="card-body p-5">
                 <h3 class="card-title text-center">Detalhes</h3>
                 <p class="card-text">
-						<div class="input-group-md mb-3">
-							<label for="Data">Data:</label>
-							<label for="DataP">22/11/2020</label>
-						</div>	
-						<div class="md-form input-group mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text md-addon" id="NomeEmp">Empresa: </span>
-						  </div>
-							<input disabled type="text" class="form-control" placeholder="Thornton S.A" aria-label="NomeEmpresa"
-								aria-describedby="basic-addon2">
-						</div>
-						<div class="md-form input-group mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text md-addon" id="Endereco">Endereço:</span>
-						  </div>
-							<input disabled type="text" class="form-control" placeholder="AV Carmesia 123" aria-label="EnredecoTratado"
-								aria-describedby="basic-addon2">
-						</div>
-						<div class="input-group-md mb-3">
-							<label for="Residuo">Resíduo:</label>
-							<label for="TipoResiduo">Plástico</label>
-						</div>
-						<div class="input-group-md mb-3">
-							<label for="Quantidade">Quantidade:</label>
-							<label for="QuantidadeR">11 Toneladas</label>
-						</div>
-						<div class="input-group-md mb-3">
-							<label for="Quantidade">Status:</label>
-							<label for="QuantidadeR">Recebido </label>
-							<button class="btn btn-success" type="submit">Aceitar</button>
-							<button class="btn btn-danger" type="submit">Recusar</button>
-						</div>
+                    <div class="mb-3">
+                        <p>
+                            <span>ID:</span>
+                            <span id="idEntrega">#00000444</span> 
+                        </p>
+                    </div>
+                    <div class="input-group-md mb-3">
+                        <p>
+                            <span>Data:</span>
+                            <span id="dataEntrega">22/11/2020</span> 
+                        </p>
+                    </div>	
+                    <div class="md-form input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text md-addon" id="NomeEmp">Empresa: </span>
+                        </div>
+                        <input disabled type="text" class="form-control" placeholder="Thornton S.A" aria-label="NomeEmpresa"
+                            aria-describedby="basic-addon2">
+                    </div>
+                    <div class="md-form input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text md-addon" id="Endereco">Endereço:</span>
+                        </div>
+                        <input disabled type="text" class="form-control" placeholder="AV Carmesia 123" aria-label="EnredecoTratado"
+                            aria-describedby="basic-addon2">
+                    </div>
+                    <div class="mb-3">
+                        <p>
+                           <span>CNPJ:</span>
+                           <span id="cnpjEntrega">11.111.111/1111-11</span> 
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <p>
+                           <span>Telefone:</span>
+                           <span id="telefoneEntrega">(99)99999-9999</span> 
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <p>
+                           <span>Email:</span>
+                           <span id="emailEntrega">otto_gerenciamento@email.com</span> 
+                        </p>
+                    </div> 
+                    <div class="mb-3">
+                        <span>Resíduo:</span>
+                        <span id="residuoEntrega">Plástico</span>
+                    </div>
+                    <div class="mb-3">
+                        <span>Quantidade:</span>
+                        <span id="quantidadeEntrega">11 Toneladas</span>
+                    </div>
+                    <div class="mb-3">
+                        <span>Status:</span>
+                        <span id="statusEntrega">Recebido</span>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button class="btn btn-success" type="submit">Aceitar</button>
+                        <button class="btn btn-danger" type="submit">Recusar</button>
+                    </div>
 				</p>
             </div>
         </div>
