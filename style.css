@@ -1,5 +1,10 @@
+body {
+    background-color:#376F8B;
+}
+
 .nav-bg-color {
     background-color: green;
+    border-bottom: 2px solid black;
 }
 
 .nav-icon {
@@ -16,4 +21,13 @@
     background-color: green;
     border: 2px solid black;
     color: black;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+.card-deck {
+    background-color: #376F8B;
 }
