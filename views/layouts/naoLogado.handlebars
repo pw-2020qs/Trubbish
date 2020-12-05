@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trubish - Coletor</title>
+
+    <!-- Bootstrap - referências para as folhas de estilo -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Fonts Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!-- Menu de navegação compartilhado -->
+        <div id="navigationMenu">
+            <nav class="navbar navbar-expand-md navbar-dark nav-bg-color">
+                <a class="navbar-brand" href="#"><img src="/static/trubish-icon.png" alt="Ícone principal do Trubish"
+                        class="nav-icon"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <div class="nav navbar-nav ml-auto">
+                    <form action="/login" method="post" class="form-inline">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item mr-2">
+                                <input type="text" name="usuario" class="form-control" required placeholder="Usuário">
+                            </li>
+
+                            <li class="nav-item mr-2">
+                                <input type="password" name="senha" class="form-control" required placeholder="senha">
+                            </li>
+                            
+                            <li class="nav-item mr-2">
+                                <input type="submit" class="btn btn-outline-light" value="Login">
+                            </li>
+                        </ul>
+                    </form>
+                    <ul class="nav navbar-nav ml-auto">
+
+                        <li class="nav-item mr-2">
+                            <form class="form-inline">
+                                <a class="btn btn-outline-light" href="/cadastro" role="button">Cadastrar</a>
+                            </form>
+                        </li>
+
+                        <li class="nav-item mr-2">
+                            <form class="form-inline">
+                                <button class="btn btn-outline-light" type="submit">Esqueceu a Senha?</button>
+                            </form>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            {{{body}}}
+        </div>
+    </main>
+
+
+    <!-- jQuery e Ajax -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+
+
+    <!-- Bootstrap- referências para JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
