@@ -37,6 +37,10 @@ export function cliColetasAgendadas(req: e.Request, res: e.Response){
     res.render("cliColetasAgendadas")
 }
 
+export function alterarCadastro(req: e.Request, res: e.Response){
+    res.render("alterarCadastro")
+}
+
 export function login(req: e.Request, res: e.Response){
     console.log("Login: "+ req.body.usuario + " senha: "+ req.body.senha)
     /* aqui a gente pode mudar para fazer a consulta no banco de dados e validar o usuário 

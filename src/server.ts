@@ -44,6 +44,8 @@ app.get("/cliColetasAgendadas", controller.cliColetasAgendadas)
 
 app.get("/cliHistoricoPedidos", controller.cliHistoricoPedidos)
 
+app.get("/alterarCadastro", controller.alterarCadastro)
+
 app.get("/cliNovoPedido", controller.cliNovoPedido)
 
 app.post("/login", controller.login)
