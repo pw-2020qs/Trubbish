@@ -26,3 +26,7 @@ export async function desconectar(){
         throw error
     }
 }
+
+export function getDb(){
+    return cliente.db(config.db.name)
+}

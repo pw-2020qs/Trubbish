@@ -1,6 +1,9 @@
 import { exception } from "console"
+import { response } from "express"
 import * as fs from "fs"
+import { Db } from "mongodb"
 import {config} from "./config"
+import * as dbConexao from "./db-conectar"
 
 /* Criar as nossas interfaces para cada tipo de dado, por exemplo, 
 um para os pedidos, outro para dados cadastrais, etc. */
@@ -8,6 +11,35 @@ export interface ToDo {
     'id': number,
     'description': string,
     'tags': string[]
+}
+
+class Usuario{
+    nomeUsuario: string
+    senha: string
+
+    nomeEmpresa: string
+    email: string
+
+    telefone: string
+    cnpj: number
+
+    ramoEmpressa: string
+    avatarPerfil: string
+
+    tipoUsuario: string
+
+    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, avatarPerfil: string, tipoUsuario: string){
+        this.nomeUsuario = nomeUsuario
+        this.senha       = senha
+        this.nomeEmpresa = nomeEmpresa
+        this.email       = email
+        this.telefone    = telefone
+        this.cnpj        = cnpj
+        this.ramoEmpressa= ramoEmpresa
+        this.avatarPerfil= avatarPerfil
+        this.tipoUsuario = tipoUsuario
+    }
+
 }
 
 // in-memory model
@@ -44,4 +76,31 @@ export function saveFile() {
         console.error((error as Error).stack)
     }
     
+}
+
+export class UsuarioDAO {
+    private static instancia : UsuarioDAO
+
+    private getColecao(){
+        return dbConexao.getDb().collection(config.db.collection.usuarios)
+    }
+
+    private constructor(){}
+
+    static getIntancia(): UsuarioDAO{
+        if(!UsuarioDAO.instancia){
+            UsuarioDAO.instancia = new UsuarioDAO()
+        }
+        return UsuarioDAO.instancia
+    }
+    
+    async inserir(usuario: Usuario){
+        try {
+            const respInsercao = await this.getColecao().insertOne(usuario)
+            return (respInsercao) ? respInsercao.insertedCount > 0 : false
+        } catch (error) {
+            throw Error("Falha ao inserir o nome usuário")
+
+        }
+    }
 }
