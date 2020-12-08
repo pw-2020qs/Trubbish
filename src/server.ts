@@ -49,7 +49,11 @@ app.get("/alterarCadastro", controller.alterarCadastro)
 
 app.get("/cliNovoPedido", controller.cliNovoPedido)
 
+app.get("/cadastro", controller.cadastro)
+
 app.post("/login", controller.login)
+
+app.post("/cadastro", controller.cadastrarUsuario)
 
 
 

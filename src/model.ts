@@ -13,7 +13,7 @@ export interface ToDo {
     'tags': string[]
 }
 
-class Usuario {
+export class Usuario {
     nomeUsuario: string
     senha: string
 

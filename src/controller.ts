@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
     res.redirect("/paginaPrincipal")
 })
 
+export function cadastro(req: e.Request, res: e.Response) {
+    res.render("cadastro", { layout: "naoLogado.handlebars" })
+}
+
 export function cliNovoPedido(req: e.Request, res: e.Response) {
     res.render("cliNovoPedido")
 }
@@ -41,10 +45,9 @@ export function alterarCadastro(req: e.Request, res: e.Response) {
     res.render("alterarCadastro")
 }
 
+/* Verificar se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
 export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
-    /* aqui a gente pode mudar para fazer a consulta no banco de dados e validar o usuário 
-    em que é feita a consulta usando uma função armazenada no model*/
 
     console.log("Usuário encontrado?")
     const usuario = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
@@ -55,17 +58,61 @@ export async function login(req: e.Request, res: e.Response) {
     else {
         console.log("Usuário encontrado!")
         if (req.body.senha == usuario.senha) {
-            res.render("cliente")
+            if (usuario.tipoUsuario == "cliente")
+                res.render("cliente")
+            /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/
+            else if (usuario.tipoUsuario == "coletor")
+                res.render("tratamento")
+            else
+                res.render("coletor")
             console.log("Senha correta")
         }
-        else
-        {
+        /* Caso a senha esteja incorreta ou o usuário não exista, retorna para a o menu principal */
+        else {
             res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
             console.log("Senha incorreta")
         }
-            
+
     }
 
+
+}
+
+/* Implementar, a função para selecionar avatar de perfil, mostrar força da senha e selecionar ramo da empresa */
+/* Função cadastrar usuário */
+export async function cadastrarUsuario(req: e.Request, res: e.Response) {
+    const nomeUsuario = req.body.usuario     || ""
+    const senha       = req.body.senha       || ""
+    const nomeEmpresa = req.body.nomeEmpresa || ""
+    const email       = req.body.email       || ""
+    const telefone    = req.body.telefone    || ""
+    const cnpj        = req.body.cnpj        || ""
+    const ramoEmpresa = req.body.ramoEmpresa || ""
+    const avatarPerfil= req.body.avatarPerfil|| ""
+    const tipoUsuario = req.body.tipoUsuario || "cliente"
+
+
+    console.log(req.body)
+    const usuarioExistente = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
+    if (usuarioExistente) {
+        console.error("Usuário já existente!")
+        
+    }
+    else{
+        const novoUsuario = new model.Usuario(nomeUsuario 
+            ,senha       
+            ,nomeEmpresa 
+            ,email       
+            ,telefone    
+            ,cnpj        
+            ,ramoEmpresa 
+            ,avatarPerfil
+            ,tipoUsuario )
+        console.log(novoUsuario)
+        await model.UsuarioDAO.buscarIntancia().inserir(novoUsuario)
+           
+    }
+    res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
 
 }
 

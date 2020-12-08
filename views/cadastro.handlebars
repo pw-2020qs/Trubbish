@@ -1,0 +1,59 @@
+<div class="card-md">
+/* Implementar, a função para selecionar avatar de perfil, mostrar força da senha e selecionar ramo da empresa - a fazer */
+    <div class="card-body p-5 ">
+        <h3 class="card-title text-center">Casdastro</h3>
+        <p class="card-text">
+        <<form action="/cadastro" method="post">
+            <div class="input-group-md mb-3">
+                <input type="text" class="form-control" name="nomeEmpresa" placeholder="Nome da empresa" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-md mb-3">
+                <input type="text" class="form-control" name="email" placeholder="E-mail" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-md mb-3">
+                <input type="text" class="form-control" name="usuario" placeholder="Nome de usuário" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-md mb-3">
+                <input type="password" class="form-control" name="senha" placeholder="Senha" aria-label="Senha"
+                    aria-describedby="basic-addon2">
+                <div class="progress progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="input-group-md mb-3">
+                <input type="text" class="form-control" name="telefone" placeholder="Telefone" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-md mb-3">
+                <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Ramo da empresa
+                <div class="dropdown-menu" name="ramoEmpresa" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Química</a>
+                    <a class="dropdown-item" href="#">Eletronicos</a>
+                    <a class="dropdown-item" href="#">Construção</a>
+                </div>
+                </button>
+            </div>
+            {{!-- parte de upload de fotos - a fazer  --}}
+            <div class="text-left mb-3">
+                <img height="130" src="https://www.fivesquid.com/pics/t2/1508461776-76689-1-1.jpg" class="rounded"
+                    alt="avatar de perfil">
+            </div>
+
+            <div class="input-group-md mb-3">
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">Cadastrar</button>
+            </div>
+
+
+        </form>
+        </p>
+    </div>
+
+</div>
