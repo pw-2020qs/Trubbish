@@ -2,7 +2,7 @@ import { exception } from "console"
 import { response } from "express"
 import * as fs from "fs"
 import { Db } from "mongodb"
-import {config} from "./config"
+import { config } from "./config"
 import * as dbConexao from "./db-conectar"
 
 /* Criar as nossas interfaces para cada tipo de dado, por exemplo, 
@@ -13,7 +13,7 @@ export interface ToDo {
     'tags': string[]
 }
 
-class Usuario{
+class Usuario {
     nomeUsuario: string
     senha: string
 
@@ -28,15 +28,15 @@ class Usuario{
 
     tipoUsuario: string
 
-    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, avatarPerfil: string, tipoUsuario: string){
+    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, avatarPerfil: string, tipoUsuario: string) {
         this.nomeUsuario = nomeUsuario
-        this.senha       = senha
+        this.senha = senha
         this.nomeEmpresa = nomeEmpresa
-        this.email       = email
-        this.telefone    = telefone
-        this.cnpj        = cnpj
-        this.ramoEmpressa= ramoEmpresa
-        this.avatarPerfil= avatarPerfil
+        this.email = email
+        this.telefone = telefone
+        this.cnpj = cnpj
+        this.ramoEmpressa = ramoEmpresa
+        this.avatarPerfil = avatarPerfil
         this.tipoUsuario = tipoUsuario
     }
 
@@ -55,7 +55,7 @@ export function loadFile() {
         console.log("Loading model from the file system...")
         model = JSON.parse(fs.readFileSync(config["todo-file"]).toString())
         console.log("Model loaded")
-    } catch(error) {
+    } catch (error) {
         console.error("Failed to load data model from filesystem")
         console.error((error as Error).stack)
     }
@@ -65,51 +65,68 @@ export function loadFile() {
  * Save data model to disk
  */
 
- /* Atualizar o banco */
+/* Atualizar o banco */
 export function saveFile() {
     try {
         console.log("Saving model to the file system...")
         fs.writeFileSync(config["todo-file"], JSON.stringify(model))
         console.log("Finished saving data")
-    } catch(error) {
+    } catch (error) {
         console.error("Failed to save data model to filesystem")
         console.error((error as Error).stack)
     }
-    
+
 }
 
 export class UsuarioDAO {
-    private static instancia : UsuarioDAO
+    private static instancia: UsuarioDAO
 
-    private getColecao(){
+    private buscarColecao() {
         return dbConexao.getDb().collection(config.db.collection.usuarios)
     }
 
-    private constructor(){}
+    private constructor() { }
 
-    static getIntancia(): UsuarioDAO{
-        if(!UsuarioDAO.instancia){
+    static buscarIntancia(): UsuarioDAO {
+        if (!UsuarioDAO.instancia) {
             UsuarioDAO.instancia = new UsuarioDAO()
         }
         return UsuarioDAO.instancia
     }
-    
-    async inserir(usuario: Usuario){
+
+    async inserir(usuario: Usuario) {
         try {
-            const respInsercao = await this.getColecao().insertOne(usuario)
+            const respInsercao = await this.buscarColecao().insertOne(usuario)
             return (respInsercao) ? respInsercao.insertedCount > 0 : false
         } catch (error) {
-            throw Error("Falha ao inserir o nome usuário")
+            console.error("Falha ao inserir o nome usuário")
+            throw error
 
         }
     }
 
-    async listarTodos(){
+    async buscarUsuario(nomeUsuario: string) {
         try {
-            return await this.getColecao().find({}, {projection: {_id: 0} }).toArray() || []
+            const usuario = await this.buscarColecao().findOne({ nomeUsuario: nomeUsuario })
+
+            if (usuario)
+                return usuario as Usuario
+
         } catch (error) {
-            throw Error("Falha ao listar os usuários");
-            
+            console.error("Usuário não encontrado")
+            throw error
+        }
+
+        
+    }
+
+    async listarTodos() {
+        try {
+            return await this.buscarColecao().find({}, { projection: { _id: 0 } }).toArray() || []
+        } catch (error) {
+            console.error("Falha ao listar os usuários");
+            throw error
+
         }
     }
 }
