@@ -4,6 +4,7 @@ import * as controller from "./controller"
 import * as model from "./model"
 import bodyParser from "body-parser"
 import { config } from "./config"
+import * as dbConexao from "./db-conectar"
 import hbs from "express-handlebars"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
@@ -20,12 +21,12 @@ app.engine("handlebars", hbs({
 }))
 app.set("view engine", "handlebars")
 app.set("views", path.resolve(__dirname, "..", "views"))
-app.engine("handlebars", hbs({defaultLayout: "main"}))
+app.engine("handlebars", hbs({ defaultLayout: "main" }))
 
 /**
  * Configure body parser middleware
  */
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 /**
  * static routes
@@ -36,7 +37,7 @@ app.use('/static', e.static(STATIC_DIR))
 /**
  * Dynamic routes
  */
-app.get("/", controller.paginaPrincipal) 
+app.get("/", controller.paginaPrincipal)
 
 app.get("/paginaPrincipal", controller.paginaPrincipal)
 
@@ -49,7 +50,7 @@ app.get("/alterarCadastro", controller.alterarCadastro)
 app.get("/cliNovoPedido", controller.cliNovoPedido)
 
 app.post("/login", controller.login)
-  
+
 
 
 /**
@@ -67,11 +68,42 @@ function exitHandler() {
     process.exit()
 }
 
+/* Implementações não testadas */
+/* Versão antiga para desligar o servidor */
+/* 
 process.once("SIGINT", exitHandler)
-process.once("SIGUSR2", exitHandler)
+process.once("SIGUSR2", exitHandler) */
 
+/* Nova versão */
+process.once("SIGINT", sairServidor)
+process.once("SIGUSR2", sairServidor)
 
-app.listen(config["server-port"], () => {
+/* Nova versão com conexão ao banco de dados */
+console.log("Inicializando o servidor")
+dbConexao.conectar()
+    .then(
+        () => {
+            app.listen(config["server-port"], () => {
+                // model.loadFile()
+                console.log("Servidor pronto! Escutando a porta: " + config["server-port"])
+            })
+        }
+    )
+    .catch(error => {
+        console.error("Erro ao levantar o servidor")
+        console.error(error.stack)
+    })
+
+function sairServidor(){
+    dbConexao.desconectar()
+    .then(() => process.exit())
+    .catch(error => {
+        console.error("Falhaao desligar o servidor")
+    })
+}
+
+/* Versão antiga para inicializar o servidor */
+/* app.listen(config["server-port"], () => {
     // model.loadFile()
     console.log("Servidor pronto! Escutando a porta: " + config["server-port"])
-})
+}) */
