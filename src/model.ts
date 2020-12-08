@@ -5,14 +5,9 @@ import { Db } from "mongodb"
 import { config } from "./config"
 import * as dbConexao from "./db-conectar"
 
-/* Criar as nossas interfaces para cada tipo de dado, por exemplo, 
-um para os pedidos, outro para dados cadastrais, etc. */
-export interface ToDo {
-    'id': number,
-    'description': string,
-    'tags': string[]
-}
+/* A Fazer - Criar classes para pedidos e demais entidades que necessitem, parecido com essa que eu fiz */
 
+/* Classe de usuaŕio */
 export class Usuario {
     nomeUsuario: string
     senha: string
@@ -41,43 +36,7 @@ export class Usuario {
     }
 
 }
-
-// in-memory model
-let model: ToDo[] = []
-
-/**
- * Load data model from disk
- */
-
-/* No caso, a gente pode substuir por uma função que leia do banco de dados */
-export function loadFile() {
-    try {
-        console.log("Loading model from the file system...")
-        model = JSON.parse(fs.readFileSync(config["todo-file"]).toString())
-        console.log("Model loaded")
-    } catch (error) {
-        console.error("Failed to load data model from filesystem")
-        console.error((error as Error).stack)
-    }
-}
-
-/**
- * Save data model to disk
- */
-
-/* Atualizar o banco */
-export function saveFile() {
-    try {
-        console.log("Saving model to the file system...")
-        fs.writeFileSync(config["todo-file"], JSON.stringify(model))
-        console.log("Finished saving data")
-    } catch (error) {
-        console.error("Failed to save data model to filesystem")
-        console.error((error as Error).stack)
-    }
-
-}
-
+/* a fazer - implementar atualização de cadastro */
 export class UsuarioDAO {
     private static instancia: UsuarioDAO
 
@@ -129,4 +88,10 @@ export class UsuarioDAO {
 
         }
     }
+    /* Implementar */
+    async atualizarCadatro(usuario: Usuario){
+
+    }
 }
+
+/* Implementar DAO semelhante para informações dos pedidos */

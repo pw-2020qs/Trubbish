@@ -19,6 +19,7 @@ app.set("views", path.resolve(__dirname, "..", "views"))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
+/* Fazer redirecionamento para as telas dos demais tipos de perfils */
 app.use('/static', e.static(STATIC_DIR))
 
 app.get("/", (req, res) => {
@@ -45,7 +46,7 @@ export function alterarCadastro(req: e.Request, res: e.Response) {
     res.render("alterarCadastro")
 }
 
-/* Verificar se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
+/* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
 export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
 
@@ -88,7 +89,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
     const telefone    = req.body.telefone    || ""
     const cnpj        = req.body.cnpj        || ""
     const ramoEmpresa = req.body.ramoEmpresa || ""
-    const avatarPerfil= req.body.avatarPerfil|| ""
+    const avatarPerfil= req.body.avatarPerfil|| "caminho/imagem-generica"
     const tipoUsuario = req.body.tipoUsuario || "cliente"
 
 
@@ -116,11 +117,12 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
 
 }
 
-
 export function paginaPrincipal(req: e.Request, res: e.Response) {
     console.log("Página principal")
     res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
 }
+
+/* Implementar funções para carregamento de pedidos, cadastro de pedidos, carregamento de dados agregados para os gráficos, etc */
 
 /* Tratamento personalizado de erros: a fazer */
 

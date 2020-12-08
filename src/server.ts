@@ -37,6 +37,8 @@ app.use('/static', e.static(STATIC_DIR))
 /**
  * Dynamic routes
  */
+
+/* A fazer - implementar as demais rotas para coletor e tratamento */
 app.get("/", controller.paginaPrincipal)
 
 app.get("/paginaPrincipal", controller.paginaPrincipal)
