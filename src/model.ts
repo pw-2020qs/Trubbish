@@ -103,4 +103,13 @@ export class UsuarioDAO {
 
         }
     }
+
+    async listarTodos(){
+        try {
+            return await this.getColecao().find({}, {projection: {_id: 0} }).toArray() || []
+        } catch (error) {
+            throw Error("Falha ao listar os usuários");
+            
+        }
+    }
 }

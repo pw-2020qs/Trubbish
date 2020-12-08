@@ -41,10 +41,14 @@ export function alterarCadastro(req: e.Request, res: e.Response){
     res.render("alterarCadastro")
 }
 
-export function login(req: e.Request, res: e.Response){
+export async function login(req: e.Request, res: e.Response){
     console.log("Login: "+ req.body.usuario + " senha: "+ req.body.senha)
     /* aqui a gente pode mudar para fazer a consulta no banco de dados e validar o usuário 
     em que é feita a consulta usando uma função armazenada no model*/
+    const usuarios = await model.UsuarioDAO.getIntancia().listarTodos()
+    console.log("Lista de usuários disponíveis:\n")
+    console.log(usuarios)
+
     if (req.body.usuario == "cliente" && req.body.senha == "123") {
         res.render("cliente")
         console.log("Senha correta")    
