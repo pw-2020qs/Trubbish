@@ -68,9 +68,9 @@ process.once('exit', (code) => {
     console.log(`Server exited`)
 })
 
-function exitHandler() {
+/* function exitHandler() {
     process.exit()
-}
+} */
 
 /* Implementações não testadas */
 /* Versão antiga para desligar o servidor */
