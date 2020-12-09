@@ -11,6 +11,7 @@
     "@types/node": "^14.14.10",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "multiparty-express": "^0.1.9"
   }
 }
