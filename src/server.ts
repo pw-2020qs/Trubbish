@@ -24,7 +24,8 @@ app.use(session({
 }))
 app.use((req, res, next) => {
     res.locals.autenticado = (req.session.autenticado) ? true : false
-    res.locals.tipoCliente = (req.session.tipoUsuario) ? (req.session.tipoUsuario) : ""
+    res.locals.nomeUsuario = (req.session.nomeUsuario) ? (req.session.nomeUsuario) : ""
+    res.locals.tipoUsuario = (req.session.tipoUsuario) ? (req.session.tipoUsuario) : ""
     next()
 })
 

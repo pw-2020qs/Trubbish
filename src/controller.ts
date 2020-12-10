@@ -66,6 +66,7 @@ export async function login(req: e.Request, res: e.Response) {
 
         if (await bcrypt.compare(req.body.senha, usuario.senha)) {
             req.session.autenticado = true
+            req.session.nomeUsuario = usuario.nomeUsuario
             req.session.tipoUsuario = usuario.tipoUsuario
 
             if (usuario.tipoUsuario == "cliente")
