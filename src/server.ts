@@ -8,6 +8,7 @@ import * as dbConexao from "./db-conectar"
 import hbs from "express-handlebars"
 import session from "express-session"
 import "./session-data"
+import {multipartyExpress as multiparty, cleanup} from "multiparty-express"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
 
@@ -41,6 +42,8 @@ app.set("view engine", "handlebars")
 app.set("views", path.resolve(__dirname, "..", "views"))
 app.engine("handlebars", hbs({ defaultLayout: "main" }))
 
+
+app.use('/picture', e.static(config.upload_dir));
 /**
  * Configure body parser middleware
  */
@@ -121,7 +124,10 @@ app.post("/login", controller.login)
 
 app.get("/logout", autenticar, controller.logout)
 
-app.post("/cadastro", controller.cadastrarUsuario)
+app.post("/cadastro", multiparty(), (req, res) => {
+    controller.cadastrarUsuario(req, res)
+    cleanup(req)
+})
 
 
 

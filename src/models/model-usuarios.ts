@@ -24,7 +24,7 @@ export class Usuario {
 
     tipoUsuario: string
 
-    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, avatarPerfil: string, tipoUsuario: string) {
+    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, tipoUsuario: string) {
         this.nomeUsuario = nomeUsuario
         this.senha = senha
         this.nomeEmpresa = nomeEmpresa
@@ -32,7 +32,7 @@ export class Usuario {
         this.telefone = telefone
         this.cnpj = cnpj
         this.ramoEmpressa = ramoEmpresa
-        this.avatarPerfil = avatarPerfil
+        this.avatarPerfil = ""
         this.tipoUsuario = tipoUsuario
     }
 
@@ -56,6 +56,9 @@ export class UsuarioDAO {
 
     async inserir(usuario: Usuario) {
         try {
+            // Verifica se usuário já existe antes de inserir
+            if(await UsuarioDAO.buscarIntancia().buscarUsuario(usuario.nomeUsuario))
+                throw Error("Usuário existente")
             // Altera senha inserida por hash do bcrypt utilizando salt = 10
             bcrypt.hash(usuario.senha, 10, async  (err, hash) => {
                 usuario.senha = hash
