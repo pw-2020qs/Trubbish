@@ -1,5 +1,14 @@
 import * as mongodb from "mongodb"
 import {config} from "./config"
+import session from "express-session"
+import ConnectMongoDBSession from "connect-mongodb-session"
+
+const Store = ConnectMongoDBSession(session)
+export const sessionStore = new Store({
+    uri: config.db.url,
+    databaseName: config.db.name,
+    collection: config.db.collection.sessions
+})
 
 const cliente = new mongodb.MongoClient(config.db.url, {useUnifiedTopology: true})
 

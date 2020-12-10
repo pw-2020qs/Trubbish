@@ -19,7 +19,8 @@ const app = e()
 app.use(session({
     secret: config.secret,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: dbConexao.sessionStore
 }))
 app.use((req, res, next) => {
     res.locals.autenticado = (req.session.autenticado) ? true : false
