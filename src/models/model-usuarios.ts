@@ -24,7 +24,7 @@ export class Usuario {
 
     tipoUsuario: string
 
-    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, tipoUsuario: string) {
+    constructor(nomeUsuario: string, senha: string, nomeEmpresa: string, email: string, telefone: string, cnpj: number, ramoEmpresa: string, avatarPerfil: string, tipoUsuario: string) {
         this.nomeUsuario = nomeUsuario
         this.senha = senha
         this.nomeEmpresa = nomeEmpresa
@@ -32,7 +32,7 @@ export class Usuario {
         this.telefone = telefone
         this.cnpj = cnpj
         this.ramoEmpressa = ramoEmpresa
-        this.avatarPerfil = ""
+        this.avatarPerfil = avatarPerfil
         this.tipoUsuario = tipoUsuario
     }
 
