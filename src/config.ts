@@ -11,5 +11,6 @@ export const config = {
             'sessions' : 'sessions'
         }
     },
-    'secret': 'session-secret-key'
+    'secret': 'session-secret-key', 
+    "upload_dir": path.resolve(__dirname, "..", "uploads")
 }
