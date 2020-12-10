@@ -3,6 +3,7 @@ import * as path from "path"
 import * as model from "./model"
 import bodyParser from "body-parser"
 import hbs from "express-handlebars"
+import * as bcrypt from "bcrypt"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
 
@@ -58,7 +59,8 @@ export async function login(req: e.Request, res: e.Response) {
     }
     else {
         console.log("Usuário encontrado!")
-        if (req.body.senha == usuario.senha) {
+
+        if (await bcrypt.compare(req.body.senha, usuario.senha)) {
             if (usuario.tipoUsuario == "cliente")
                 res.render("cliente")
             /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/

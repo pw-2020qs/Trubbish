@@ -13,7 +13,8 @@ db.createCollection('usuarios');
 // dados iniciais
 db.usuarios.insertOne({
     "nomeUsuario": "cliente"
-    ,"senha": "cliente123"
+    // senha hash de "cliente123"
+    ,"senha": "$2b$10$H1wVViAXeXIj1svx5ibs3OdVg66c1zGj3o9a8YCXS74ZbB7RzL6bm"
     ,"nomeEmpresa": "Empresa ficticia 1"
     ,"email": "empresa_sem_lixo@empresa1.com.br"
     ,"telefone": "1144202020"
