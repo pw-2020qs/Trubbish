@@ -59,7 +59,7 @@ export async function login(req: e.Request, res: e.Response) {
     const usuario = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
     if (!usuario) {
         console.log("Não encontrado")
-        res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
+        res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
     }
     else {
         console.log("Usuário encontrado!")
@@ -81,7 +81,7 @@ export async function login(req: e.Request, res: e.Response) {
         /* Caso a senha esteja incorreta ou o usuário não exista, retorna para a o menu principal */
         else {
             req.session.autenticado = false
-            res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
+            res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: true })
             console.log("Senha incorreta")
         }
 
@@ -124,13 +124,13 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
         await model.UsuarioDAO.buscarIntancia().inserir(novoUsuario)
            
     }
-    res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
+    res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
 
 }
 
 export function paginaPrincipal(req: e.Request, res: e.Response) {
     console.log("Página principal")
-    res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
+    res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
 }
 
 export function logout(req: e.Request, res: e.Response) {

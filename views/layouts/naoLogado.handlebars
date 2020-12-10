@@ -38,7 +38,7 @@
                             </li>
 
                             <li class="nav-item mr-2">
-                                <input type="password" name="senha" class="form-control" required placeholder="senha">
+                                <input type="password" name="senha" class="form-control" required placeholder="Senha">
                             </li>
                             
                             <li class="nav-item mr-2">
@@ -68,6 +68,14 @@
 
     <main>
         <div>
+            {{#if tentouSenhaIncorreta}}
+                <div class="card bg-danger text-white text-center">
+                    <p style="margin-bottom: 5px;">
+                        Senha incorreta
+                    </p>
+                </div>
+            {{/if}}
+
             {{{body}}}
         </div>
     </main>
