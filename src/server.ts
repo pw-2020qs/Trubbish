@@ -24,7 +24,7 @@ app.use(session({
 }))
 app.use((req, res, next) => {
     res.locals.autenticado = (req.session.autenticado) ? true : false
-    res.locals.tipoCliente = (req.session.tipoCliente) ? (req.session.tipoCliente) : ""
+    res.locals.tipoCliente = (req.session.tipoUsuario) ? (req.session.tipoUsuario) : ""
     next()
 })
 
@@ -46,6 +46,50 @@ app.engine("handlebars", hbs({ defaultLayout: "main" }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 /**
+ * Custom authentication middleware
+ */
+function autenticar(req: e.Request, res: e.Response, next: e.NextFunction) {
+    if (req.session.autenticado) {
+        next()
+    } else {
+        res.redirect("/paginaPrincipal")
+    }
+}
+
+/**
+ * Middleware customizado para usuário tipo cliente
+ */
+function verificarTipoCliente(req: e.Request, res: e.Response, next: e.NextFunction) {
+    if (req.session.tipoUsuario == "cliente") {
+        next()
+    } else {
+        res.redirect("/paginaPrincipal")
+    }
+}
+
+/**
+ * Middleware customizado para usuário tipo coletor
+ */
+function verificarTipoColetor(req: e.Request, res: e.Response, next: e.NextFunction) {
+    if (req.session.tipoUsuario == "coletor") {
+        next()
+    } else {
+        res.redirect("/paginaPrincipal")
+    }
+}
+
+/**
+ * Middleware customizado para usuário tipo tratamento
+ */
+function verificarTipoTratamento(req: e.Request, res: e.Response, next: e.NextFunction) {
+    if (req.session.tipoUsuario == "tratamento") {
+        next()
+    } else {
+        res.redirect("/paginaPrincipal")
+    }
+}
+
+/**
  * static routes
  */
 app.use('/static', e.static(STATIC_DIR))
@@ -60,21 +104,21 @@ app.get("/", controller.paginaPrincipal)
 
 app.get("/paginaPrincipal", controller.paginaPrincipal)
 
-app.get("/cliente", controller.clienteHome)
+app.get("/cliente", autenticar, verificarTipoCliente, controller.clienteHome)
 
-app.get("/cliColetasAgendadas", controller.cliColetasAgendadas)
+app.get("/cliColetasAgendadas", autenticar, verificarTipoCliente, controller.cliColetasAgendadas)
 
-app.get("/cliHistoricoPedidos", controller.cliHistoricoPedidos)
+app.get("/cliHistoricoPedidos", autenticar, verificarTipoCliente, controller.cliHistoricoPedidos)
 
-app.get("/alterarCadastro", controller.alterarCadastro)
+app.get("/alterarCadastro", autenticar, controller.alterarCadastro)
 
-app.get("/cliNovoPedido", controller.cliNovoPedido)
+app.get("/cliNovoPedido", autenticar, verificarTipoCliente, controller.cliNovoPedido)
 
 app.get("/cadastro", controller.cadastro)
 
 app.post("/login", controller.login)
 
-app.get("/logout", controller.logout)
+app.get("/logout", autenticar, controller.logout)
 
 app.post("/cadastro", controller.cadastrarUsuario)
 
