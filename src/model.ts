@@ -57,12 +57,13 @@ export class UsuarioDAO {
     async inserir(usuario: Usuario) {
         try {
             // Altera senha inserida por hash do bcrypt utilizando salt = 10
-            bcrypt.hash(usuario.senha, 10, function (err, hash) {
+            bcrypt.hash(usuario.senha, 10, async  (err, hash) => {
                 usuario.senha = hash
+                const respInsercao = await this.buscarColecao().insertOne(usuario)
+                return (respInsercao) ? respInsercao.insertedCount > 0 : false
             })
 
-            const respInsercao = await this.buscarColecao().insertOne(usuario)
-            return (respInsercao) ? respInsercao.insertedCount > 0 : false
+            
         } catch (error) {
             console.error("Falha ao inserir o nome usuário")
             throw error
