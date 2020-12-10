@@ -5,12 +5,16 @@
   "repository": "https://github.com/pw-2020qs/Trubbish.git",
   "license": "MIT",
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.9",
     "@types/express-handlebars": "^3.1.0",
+    "@types/express-session": "^1.17.3",
     "@types/mongodb": "^3.6.1",
     "@types/node": "^14.14.10",
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
     "mongodb": "^3.6.3",
     "multiparty-express": "^0.1.9"
   }
