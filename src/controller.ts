@@ -31,6 +31,10 @@ export function cadastro(req: e.Request, res: e.Response) {
     res.render("cadastro", { layout: "naoLogado.handlebars" })
 }
 
+export function clienteHome(req: e.Request, res: e.Response) {
+    res.render("cliente")
+}
+
 export function cliNovoPedido(req: e.Request, res: e.Response) {
     res.render("cliNovoPedido")
 }
@@ -61,8 +65,10 @@ export async function login(req: e.Request, res: e.Response) {
         console.log("Usuário encontrado!")
 
         if (await bcrypt.compare(req.body.senha, usuario.senha)) {
+            req.session.autenticado = true
+
             if (usuario.tipoUsuario == "cliente")
-                res.render("cliente")
+                res.redirect("/cliente")
             /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/
             else if (usuario.tipoUsuario == "coletor")
                 res.render("tratamento")
@@ -72,6 +78,7 @@ export async function login(req: e.Request, res: e.Response) {
         }
         /* Caso a senha esteja incorreta ou o usuário não exista, retorna para a o menu principal */
         else {
+            req.session.autenticado = false
             res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
             console.log("Senha incorreta")
         }
@@ -122,6 +129,13 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
 export function paginaPrincipal(req: e.Request, res: e.Response) {
     console.log("Página principal")
     res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
+}
+
+export function logout(req: e.Request, res: e.Response) {
+    if (req.session.autenticado) {
+        req.session.autenticado = false
+    }
+    res.redirect("/paginaPrincipal")
 }
 
 /* Implementar funções para carregamento de pedidos, cadastro de pedidos, carregamento de dados agregados para os gráficos, etc */

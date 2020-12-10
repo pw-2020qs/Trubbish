@@ -6,10 +6,26 @@ import bodyParser from "body-parser"
 import { config } from "./config"
 import * as dbConexao from "./db-conectar"
 import hbs from "express-handlebars"
+import session from "express-session"
+import "./session-data"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
 
 const app = e()
+
+/**
+ * Configure session middleware
+ */
+app.use(session({
+    secret: config.secret,
+    resave: false,
+    saveUninitialized: false
+}))
+app.use((req, res, next) => {
+    res.locals.autenticado = (req.session.autenticado) ? true : false
+    res.locals.tipoCliente = (req.session.tipoCliente) ? (req.session.tipoCliente) : ""
+    next()
+})
 
 /**
  * set up handlebars as view engine
@@ -43,6 +59,8 @@ app.get("/", controller.paginaPrincipal)
 
 app.get("/paginaPrincipal", controller.paginaPrincipal)
 
+app.get("/cliente", controller.clienteHome)
+
 app.get("/cliColetasAgendadas", controller.cliColetasAgendadas)
 
 app.get("/cliHistoricoPedidos", controller.cliHistoricoPedidos)
@@ -54,6 +72,8 @@ app.get("/cliNovoPedido", controller.cliNovoPedido)
 app.get("/cadastro", controller.cadastro)
 
 app.post("/login", controller.login)
+
+app.get("/logout", controller.logout)
 
 app.post("/cadastro", controller.cadastrarUsuario)
 

@@ -9,5 +9,6 @@ export const config = {
         'collection' : {
             'usuarios' : 'usuarios'
         }
-    }
+    },
+    'secret': 'session-secret-key'
 }
