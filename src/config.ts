@@ -8,6 +8,7 @@ export const config = {
         'name' : 'trubbish',
         'collection' : {
             'usuarios' : 'usuarios',
+            'pedidos'  : 'pedidos',
             'sessions' : 'sessions'
         }
     },

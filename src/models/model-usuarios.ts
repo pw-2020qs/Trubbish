@@ -2,8 +2,8 @@ import { exception } from "console"
 import { response } from "express"
 import * as fs from "fs"
 import { Db } from "mongodb"
-import { config } from "./config"
-import * as dbConexao from "./db-conectar"
+import { config } from "../config"
+import * as dbConexao from "../db-conectar"
 import * as bcrypt from "bcrypt"
 
 /* A Fazer - Criar classes para pedidos e demais entidades que necessitem, parecido com essa que eu fiz */
