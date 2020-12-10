@@ -1,6 +1,6 @@
 import e from "express"
 import * as path from "path"
-import * as model from "./model"
+import * as modelUsuario from "./models/model-usuarios"
 import { config } from "./config"
 import bodyParser from "body-parser"
 import hbs from "express-handlebars"
@@ -59,7 +59,7 @@ export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
 
     console.log("Usuário encontrado?")
-    const usuario = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
+    const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
     if (!usuario) {
         console.log("Não encontrado")
         res.render("paginaPrincipal", { layout: "naoLogado.handlebars" })
@@ -128,15 +128,17 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
     const telefone = getField("telefone")
     const cnpj = getField("cnpj")
     const ramoEmpresa = getField("ramoEmpresa")
+    const avatarPerfil = getField("avatarPerfil")
     const tipoUsuario = "cliente"
 
-    const profile = new model.Usuario(nomeUsuario
+    const profile = new modelUsuario.Usuario(nomeUsuario
         , senha
         , nomeEmpresa
         , email
         , telefone
         , cnpj
         , ramoEmpresa
+        , avatarPerfil
         , tipoUsuario)
 
     console.log(req.files)
@@ -149,7 +151,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
         }
         console.log("Inserindo usuário")
         console.log(profile)
-        await model.UsuarioDAO.buscarIntancia().inserir(profile)
+        await modelUsuario.UsuarioDAO.buscarIntancia().inserir(profile)
         res.redirect("/")
 
     } catch (error) {
