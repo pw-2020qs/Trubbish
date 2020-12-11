@@ -17,7 +17,7 @@
                 <td scope="row">{{pedido.nomeEmpAtendente}}</td>
                 <td scope="row">{{pedido.quantidadeResiduo}} {{pedido.tipoResiduo}}</td>
                 <td scope="row">
-                    <form class="form-inline" method="POST" action="#">
+                    <form class="form-inline" method="get" action="/cliColetasAgendadas/{{pedido.idPedido}}">
                         <button class="btn btn-outline-light" type="submit">Detalhes</button>
                     </form>
                 </td>

@@ -113,7 +113,7 @@ app.get("/paginaPrincipal", controllerUsuario.paginaPrincipal)
 
 app.get("/cliente", autenticar, verificarTipoCliente, controllerUsuario.clienteHome)
 
-app.get("/cliColetasAgendadas", autenticar, verificarTipoCliente, controllerUsuario.cliColetasAgendadas)
+app.get("/cliColetasAgendadas/:id", autenticar, verificarTipoCliente, controllerUsuario.cliColetasAgendadas)
 
 app.get("/cliHistoricoPedidos", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
 

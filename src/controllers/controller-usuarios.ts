@@ -74,12 +74,36 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
 export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
+
+    const idPedido = parseInt(req.params.id) || 0
+
     if (usuario){
         const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
+        const pedidoEspecifico = await modelPedido.PedidoDAO.buscarIntancia().buscarPedido(idPedido)
+        let pedidoExibido: modelPedido.Pedido
+
+        if (idPedido > 0 && pedidoEspecifico) {
+            pedidoExibido = pedidoEspecifico
+        }
+        else if (pedidos) {
+            pedidoExibido = pedidos[0]
+        }
+        else {
+            // pedido vazio para exibição
+            pedidoExibido = new modelPedido.Pedido("Sem empresa",
+                "Sem Empresa",
+                "Sem Tipo Resíduo",
+                0,
+                "Sem Data",
+                "Sem Horário",
+                "Sem Endereço",
+                "coleta")
+        }
+
         res.render("cliColetasAgendadas", {
             layout: "main.handlebars",
             pedidos: pedidos,
-            pedido: (pedidos?pedidos[0]:"")//so estou usando para fazer uma pre populacao na secao de detalhes
+            pedido: pedidoExibido
         })
     }
     

@@ -135,7 +135,7 @@ export class PedidoDAO {
             const pedido = await this.buscarColecao().findOne({ idPedido: idPedido })
 
             if (pedido)
-                return pedido as Pedido[]
+                return pedido as Pedido
 
         } catch (error) {
             console.error("Pedido não encontrado")
