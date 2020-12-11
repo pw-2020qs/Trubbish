@@ -51,23 +51,23 @@ export function cliColetasAgendadas(req: e.Request, res: e.Response) {
 }
 
 export async function alterarCadastro(req: e.Request, res: e.Response) {
-    
+    const nomeUsuario = req.session.nomeUsuario || ""
     try {
         if(req.session.tipoUsuario == "cliente"){
             res.render("alterarCadastro", {
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
             })
         }
         else if(req.session.tipoUsuario == "coletor"){
             res.render("alterarCadastro", {
                 layout: "coletorLogado.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
             })
         }
         else{
             res.render("alterarCadastro", {
                 layout: "tratamentoLogado.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
             })
         }
     } catch (err) {

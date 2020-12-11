@@ -16,7 +16,7 @@ db.sequences.insertOne({
 });
 db.sequences.insertOne({
     name: 'pedidos_id',
-    value: 1
+    value: 2
 });
 
 db.createCollection('usuarios');
