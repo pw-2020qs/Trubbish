@@ -76,7 +76,7 @@ export async function login(req: e.Request, res: e.Response) {
                 res.redirect("/cliente")
             /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/
             else if (usuario.tipoUsuario == "coletor")
-                res.render("tratamento")
+                res.render("coletor", {layout: "coletorLogado.handlebars"})
             else
                 res.render("coletor")
             console.log("Senha correta")
@@ -129,7 +129,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
     const cnpj = getField("cnpj")
     const ramoEmpresa = getField("ramoEmpresa")
     const avatarPerfil = getField("avatarPerfil")
-    const tipoUsuario = "cliente"
+    const tipoUsuario = getField("tipoUsuario")
 
     const profile = new modelUsuario.Usuario(nomeUsuario
         , senha
