@@ -137,6 +137,14 @@ app.get("/coleRecursosColeta", autenticar, verificarTipoColetor, controllerUsuar
 
 app.get("/coleGraficosDesempenho", autenticar, verificarTipoColetor, controllerUsuario.coleGraficosDesempenho)
 
+app.get("/tratamento", autenticar, verificarTipoTratamento, controllerUsuario.tratamentoHome)
+
+app.get("/tratEntregasPendentes", autenticar, verificarTipoTratamento, controllerUsuario.tratEntregasPendentes)
+
+app.get("/tratHistoricoEntregas", autenticar, verificarTipoTratamento, controllerUsuario.tratHistoricoEntregas)
+
+app.get("/tratCapacidadeTratamento", autenticar, verificarTipoTratamento, controllerUsuario.tratCapacidadeTratamento)
+
 app.get("/")
 
 app.post("/cadastro", multiparty(), (req, res) => {

@@ -168,6 +168,22 @@ export function coleColetasPendentes(req: e.Request, res: e.Response){
     res.render("coleColetasPendentes", {layout: "main.handlebars"})
 }
 
+export function tratamentoHome(req: e.Request, res: e.Response){
+    res.render("tratamento", {layout: "main.handlebars"})
+}
+
+export function tratEntregasPendentes(req: e.Request, res: e.Response){
+    res.render("tratEntregasPendentes", {layout: "main.handlebars"})
+}
+
+export function tratHistoricoEntregas(req: e.Request, res: e.Response){
+    res.render("tratHistoricoEntregas", {layout: "main.handlebars"})
+}
+
+export function tratCapacidadeTratamento(req: e.Request, res: e.Response){
+    res.render("tratCapacidadeTratamento", {layout: "main.handlebars"})
+}
+
 /* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
 export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
