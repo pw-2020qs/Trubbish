@@ -8,6 +8,17 @@ db.dropDatabase()
 // recreate db
 db = connect('127.0.0.1:27017/trubbish');
 // create collection
+
+db.createCollection('sequences');
+db.sequences.insertOne({
+    name: 'usuarios_id',
+    value: 1
+});
+db.sequences.insertOne({
+    name: 'pedidos_id',
+    value: 1
+});
+
 db.createCollection('usuarios');
 
 // dados iniciais

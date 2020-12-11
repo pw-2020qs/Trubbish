@@ -7,6 +7,7 @@ export const config = {
         'url' : 'mongodb://localhost:27017',
         'name' : 'trubbish',
         'collection' : {
+            'sequences' : 'sequences',
             'usuarios' : 'usuarios',
             'pedidos'  : 'pedidos',
             'sessions' : 'sessions'

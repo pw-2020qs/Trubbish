@@ -108,6 +108,23 @@ export class UsuarioDAO {
             throw error
         }
     }
+
+    async nextId() {
+        try {
+            const seqColl = dbConexao.getDb()
+                .collection(config.db.collection.sequences)
+            const result = await seqColl.findOneAndUpdate(
+                {name: "usuarios_id"}, 
+                {$inc: {value: 1}})
+            if (result.ok) {
+                return result.value.value as number
+            }
+            throw Error()
+        } catch (error) {
+            console.error("Failed to generate a new pedido id")
+            throw error
+        }
+     }
 }
 
 /* Implementar DAO semelhante para informações dos pedidos */
