@@ -30,10 +30,37 @@ db.usuarios.insertOne({
     ,"email": "empresa_sem_lixo@empresa1.com.br"
     ,"telefone": "1144202020"
     ,"cnpj": 123456789
-    ,"ramoEmpressa": "Eletronicos"
+    ,"ramoEmpresa": "Eletronicos"
     ,"avatarPerfil": "imagem_pefil_1"
     ,"tipoUsuario": "cliente"
 })
+
+db.usuarios.insertOne({
+    "nomeUsuario": "coleta"
+    // senha hash de "cliente123"
+    ,"senha": "$2b$10$H1wVViAXeXIj1svx5ibs3OdVg66c1zGj3o9a8YCXS74ZbB7RzL6bm"
+    ,"nomeEmpresa": "Empresa coleta 1"
+    ,"email": "empresa_sem_lixo@empresa2.com.br"
+    ,"telefone": "1144202020"
+    ,"cnpj": 123456789
+    ,"ramoEmpresa": "Eletronicos"
+    ,"avatarPerfil": "imagem_pefil_1"
+    ,"tipoUsuario": "coletor"
+})
+
+db.usuarios.insertOne({
+    "nomeUsuario": "tratamento"
+    // senha hash de "cliente123"
+    ,"senha": "$2b$10$H1wVViAXeXIj1svx5ibs3OdVg66c1zGj3o9a8YCXS74ZbB7RzL6bm"
+    ,"nomeEmpresa": "Empresa tratamento 1"
+    ,"email": "empresa_sem_lixo@empresa3.com.br"
+    ,"telefone": "1144202020"
+    ,"cnpj": 123456789
+    ,"ramoEmpressa": "Eletronicos"
+    ,"avatarPerfil": "imagem_pefil_1"
+    ,"tipoUsuario": "tratamento"
+})
+
 /* db.profiles.insertOne({
     "nomeUsuario": "cliente"
     ,"senha": "cliente123"
