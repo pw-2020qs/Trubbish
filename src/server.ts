@@ -72,6 +72,14 @@ function verificarTipoCliente(req: e.Request, res: e.Response, next: e.NextFunct
     }
 }
 
+function verificarTipoClienteColetor(req: e.Request, res: e.Response, next: e.NextFunction) {
+    if (req.session.tipoUsuario == "cliente" || req.session.tipoUsuario == "coletor") {
+        next()
+    } else {
+        res.redirect("/paginaPrincipal")
+    }
+}
+
 /**
  * Middleware customizado para usuário tipo coletor
  */
@@ -113,7 +121,7 @@ app.get("/paginaPrincipal", controllerUsuario.paginaPrincipal)
 
 app.get("/cliente", autenticar, verificarTipoCliente, controllerUsuario.clienteHome)
 
-app.get("/cliColetasAgendadas/:id", autenticar, verificarTipoCliente, controllerUsuario.cliColetasAgendadas)
+app.get("/cliColetasAgendadas/:id", autenticar, verificarTipoClienteColetor, controllerUsuario.cliColetasAgendadas)
 
 app.get("/cliHistoricoPedidos/:id", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
 
