@@ -50,8 +50,15 @@ export function cliColetasAgendadas(req: e.Request, res: e.Response) {
     res.render("cliColetasAgendadas")
 }
 
-export function alterarCadastro(req: e.Request, res: e.Response) {
-    res.render("alterarCadastro")
+export async function alterarCadastro(req: e.Request, res: e.Response) {
+    try{
+        res.render("alterarCadastro", {
+            usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+        })
+    } catch (err){
+        throw err
+    } 
+    
 }
 
 export function coleGraficosDesempenho(req: e.Request, res: e.Response){

@@ -81,9 +81,9 @@ export class UsuarioDAO {
         try {
             const usuario = await this.buscarColecao().findOne({ nomeUsuario: nomeUsuario })
 
-            if (usuario)
+            if (usuario){
                 return usuario as Usuario
-
+            }
         } catch (error) {
             console.error("Usuário não encontrado")
             throw error
