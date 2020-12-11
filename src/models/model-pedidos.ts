@@ -18,16 +18,16 @@ export class Pedido {
     tipoPedido: string // coleta || entrega
     status : string //aceito || recusado || pendente
 
-    constructor(nomeEmpPedinte: string, nomeEmpAtendente: string, tipoResiduo: string, quantidadeResiduo: string, endereco: string, tipoPedido: string) {
+    constructor(nomeEmpPedinte: string, nomeEmpAtendente: string, tipoResiduo: string, quantidadeResiduo: string,
+        dataPedido: string, horaPedido: string, endereco: string, tipoPedido: string) {
         this.idPedido = 0
         this.nomeEmpPedinte = nomeEmpPedinte
         this.nomeEmpAtendente = nomeEmpAtendente
         this.tipoResiduo = tipoResiduo
         this.quantidadeResiduo = quantidadeResiduo
         this.quantidadeCaminhoes = 0
-        const dataAtual = new Date()
-        this.dataPedido = dataAtual.toString()
-        this.horaPedido = dataAtual.getHours().toString()
+        this.dataPedido = dataPedido
+        this.horaPedido = horaPedido
         this.endereco = endereco
         this.tipoPedido = tipoPedido
         this.status = "pendente"

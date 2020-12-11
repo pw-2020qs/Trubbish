@@ -19,6 +19,8 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
     const quantidadeResiduo = req.body.quantidadeResiduo
     const endereco = req.body.endereco
     const tipoPedido = req.body.coleta
+    const dataPedido = req.body.dataPedido
+    const horaPedido = req.body.horaPedido
 
     try {
         const usuarioPedinte = await modelUsr.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
@@ -38,6 +40,8 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
         nomeEmpAtendente,
         tipoResiduo,
         quantidadeResiduo,
+        dataPedido,
+        horaPedido,
         endereco,
         tipoPedido)
 
