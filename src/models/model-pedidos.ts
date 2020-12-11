@@ -53,27 +53,41 @@ export class PedidoDAO {
 
     async inserir(pedido: Pedido) {
         try {
-            // Insere pedido no bd            
-            const respInsercao = await this.buscarColecao().insertOne(pedido)            
+            // Insere pedido no bd
+            const newId = await this.nextId()
+            pedido.idPedido = newId     
+            const respInsercao = await this.buscarColecao().insertOne(pedido)
+            return (respInsercao) ? respInsercao.insertedCount > 0 : false            
         } catch (error) {
             console.error("Falha ao criar o pedido")
             throw error
         }
     }
 
-    async buscarUsuario(idPedido: number) {
+    async buscarPedidos(nomeEmpPedinte: string) {
         try {
-            const pedido = await this.buscarColecao().findOne({ idPedido: idPedido })
+            const pedido = await this.buscarColecao().findOne({ nomeEmpPedinte: nomeEmpPedinte })
 
             if (pedido)
-                return pedido as Pedido
+                return pedido as Pedido[]
 
         } catch (error) {
             console.error("Pedido não encontrado")
             throw error
-        }
+        }        
+    }
 
-        
+    async buscarPedido(idPedido: number) {
+        try {
+            const pedido = await this.buscarColecao().findOne({ idPedido: idPedido })
+
+            if (pedido)
+                return pedido as Pedido[]
+
+        } catch (error) {
+            console.error("Pedido não encontrado")
+            throw error
+        }        
     }
 
     async listarTodos() {

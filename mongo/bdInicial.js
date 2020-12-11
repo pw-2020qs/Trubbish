@@ -65,4 +65,4 @@ db.pedidos.insertOne({
     ,"status" : "aceito"
 })
 
-db.usuarios.createIndex({'idPedido': 1}, {unique: true});
+db.pedidos.createIndex({'idPedido': 1}, {unique: true});
