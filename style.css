@@ -12,6 +12,10 @@ body {
     border-bottom: 2px solid black;
 }
 
+.imgPerfil {
+    width: 20px;
+}
+
 .nav-icon {
     width: 55px;
 }

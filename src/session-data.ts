@@ -3,6 +3,7 @@ declare module "express-session" {
         autenticado: boolean
         nomeUsuario: string
         tipoUsuario: string
+        fotoUsuario: string
     }
 }
 
