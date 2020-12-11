@@ -50,16 +50,30 @@ export function cliColetasAgendadas(req: e.Request, res: e.Response) {
     res.render("cliColetasAgendadas")
 }
 
-export function alterarCadastro(req: e.Request, res: e.Response) {
-    if(req.session.tipoUsuario == "cliente"){
-        res.render("alterarCadastro")
+export async function alterarCadastro(req: e.Request, res: e.Response) {
+    
+    try {
+        if(req.session.tipoUsuario == "cliente"){
+            res.render("alterarCadastro", {
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+            })
+        }
+        else if(req.session.tipoUsuario == "coletor"){
+            res.render("alterarCadastro", {
+                layout: "coletorLogado.handlebars",
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+            })
+        }
+        else{
+            res.render("alterarCadastro", {
+                layout: "tratamentoLogado.handlebars",
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario("cliente")//temporario so para teste
+            })
+        }
+    } catch (err) {
+        throw err
     }
-    else if(req.session.tipoUsuario == "coletor"){
-        res.render("alterarCadastro", {layout: "coletorLogado.handlebars"})
-    }
-    else{
-        res.render("alterarCadastro", {layout: "tratamentoLogado.handlebars"})
-    }
+    
 }
 
 export function coleGraficosDesempenho(req: e.Request, res: e.Response){
