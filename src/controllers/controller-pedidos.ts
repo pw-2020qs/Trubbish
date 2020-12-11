@@ -60,6 +60,7 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
             }
         } else {
             console.error("O pedido gerado possui campos inválidos")
+            return
             // redirecionar para página de erro
         }
     } catch(err) {

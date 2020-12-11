@@ -57,7 +57,7 @@ export class PedidoDAO {
             const newId = await this.nextId()
             pedido.idPedido = newId 
             const respInsercao = await this.buscarColecao().insertOne(pedido)
-            return (respInsercao) ? respInsercao.insertedCount > 0 : false            
+            return (respInsercao) ? respInsercao.insertedCount > 0 : false
         } catch (error) {
             console.error("Falha ao criar o pedido")
             throw error
@@ -75,6 +75,36 @@ export class PedidoDAO {
             console.error("Pedidos não encontrados")
             throw error
         }        
+    }
+
+    async buscarPedidosPassados(nomeEmpPedinte: string) {
+        try {
+
+            const pedidos = await this.buscarColecao().find({ nomeEmpPedinte: nomeEmpPedinte}).toArray()
+
+            if (pedidos){
+                const pedidosPassados = pedidos.filter( x => x.dataPedido.toData() < (new Date().getDate))
+                return pedidosPassados as Pedido[]
+            }
+
+        } catch (error) {
+            console.error("Pedidos não encontrados")
+            throw error
+        }        
+    }
+
+    async buscarPedidosFuturos(nomeEmpPedinte: string) {
+        try {
+            const pedidos = await this.buscarColecao().find({ nomeEmpPedinte: nomeEmpPedinte}).toArray()
+            if (pedidos){
+                const pedidosFuturos = pedidos.filter( x => x.dataPedido.toData() >= (new Date().getDate))
+                return pedidosFuturos as Pedido[]
+            }
+
+        } catch (error) {
+            console.error("Pedidos não encontrados")
+            throw error
+        }      
     }
 
     async buscarPedido(idPedido: number) {
