@@ -33,19 +33,16 @@ cadastro
                     aria-describedby="basic-addon2">
             </div>
             <div class="dropdown mb-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ramo da empresa
-                    <div class="dropdown-menu" name="ramoEmpresa" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Química</a>
-                        <a class="dropdown-item" href="#">Eletronicos</a>
-                        <a class="dropdown-item" href="#">Construção</a>
-                    </div>
-                </button>
+                <h6>Ramo da empresa</h6>
+                <select name="ramoEmpresa" class="btn btn-secondary dropdown-toggle" aria-placeholder="Ramo empresa">
+                    <option value="Química">Química</option>
+                    <option value="Construção">Construção</option>
+                    <option value="Eletronicos">Eletronicos</option>
+                </select>
             </div>
 
             <div class="col form-group">
-                <label for="picture">Picture</label>
+                <h6>Foto perfil</h6>
                 <input type="file" name="picture">
             </div>
 
