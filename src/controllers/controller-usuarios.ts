@@ -39,8 +39,8 @@ export async function clienteHome(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
     if(usuario){
-        console.log("resultado busca pedidos:")
-        console.log(await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa))
+        // console.log("resultado busca pedidos:")
+        // console.log(await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa))
         res.render("cliente", {
             layout: "clienteLogado.handlebars",
             pedidos: await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
@@ -54,12 +54,31 @@ export function cliNovoPedido(req: e.Request, res: e.Response) {
     res.render("cliNovoPedido",{layout: "clienteLogado.handlebars"})
 }
 
-export function cliHistoricoPedidos(req: e.Request, res: e.Response) {
-    res.render("cliHistoricoPedidos",{layout: "clienteLogado.handlebars"})
+export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
+    const nomeUsuario = req.session.nomeUsuario || ""
+    const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
+    if (usuario){
+        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+        res.render("cliHistoricoPedidos",{
+            layout: "clienteLogado.handlebars",
+            pedidos: pedidos,
+            pedido: pedidos?.pop()
+        })
+    }
+    
 }
 
-export function cliColetasAgendadas(req: e.Request, res: e.Response) {
-    res.render("cliColetasAgendadas",{layout: "clienteLogado.handlebars"})
+export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
+    const nomeUsuario = req.session.nomeUsuario || ""
+    const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
+    if (usuario){
+        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+        res.render("cliColetasAgendadas", {
+            layout: "clienteLogado.handlebars",
+            pedidos: pedidos,
+            pedido: pedidos?.pop()
+        })
+    }
     
 }
 
