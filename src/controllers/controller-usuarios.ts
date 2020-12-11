@@ -76,7 +76,9 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
             pedidoExibido = modelPedido.gerarPedidoVazio()
         }
 
-        const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(pedidoExibido.nomeEmpAtendente)
+        const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarEmpAtendente(pedidoExibido.nomeEmpAtendente)
+        console.log("Empresa do pedido:")
+        console.log(empresaEspecifica)
         let empresaExibida: modelUsuario.Usuario
 
         if (empresaEspecifica) {
@@ -115,7 +117,7 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
             pedidoExibido = modelPedido.gerarPedidoVazio()
         }
 
-        const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(pedidoExibido.nomeEmpAtendente)
+        const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarEmpAtendente(pedidoExibido.nomeEmpAtendente)
         let empresaExibida: modelUsuario.Usuario
 
         if (empresaEspecifica) {

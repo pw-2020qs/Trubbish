@@ -92,6 +92,36 @@ export class UsuarioDAO {
         
     }
 
+    async buscarEmpAtendente(nomeEmpresa: string) {
+        try {
+            const empresaAtendente = await this.buscarColecao().findOne({ nomeEmpresa: nomeEmpresa })
+            console.log("Teste Atual")
+            console.log(nomeEmpresa)
+            console.log(empresaAtendente)
+            if (empresaAtendente){
+                return empresaAtendente as Usuario
+            }
+        } catch (error) {
+            console.error("Empresa atendente não encontrada")
+            throw error
+        }
+        
+    }
+
+    async buscarEmpPedinte(nomeEmpresa: string) {
+        try {
+            const empresaPedinte = await this.buscarColecao().findOne({ nomeEmpresa: nomeEmpresa })
+
+            if (empresaPedinte){
+                return empresaPedinte as Usuario
+            }
+        } catch (error) {
+            console.error("Empresa pedinte não encontrada")
+            throw error
+        }
+        
+    }
+
     async listarTodos() {
         try {
             return await this.buscarColecao().find({}, { projection: { _id: 0 } }).toArray() || []
