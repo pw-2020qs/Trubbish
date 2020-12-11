@@ -36,7 +36,7 @@ db.usuarios.insertOne({
 })
 
 db.usuarios.insertOne({
-    "nomeUsuario": "coleta"
+    "nomeUsuario": "coletor"
     // senha hash de "cliente123"
     ,"senha": "$2b$10$H1wVViAXeXIj1svx5ibs3OdVg66c1zGj3o9a8YCXS74ZbB7RzL6bm"
     ,"nomeEmpresa": "Empresa coleta 1"
