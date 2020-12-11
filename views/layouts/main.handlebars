@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trubish - Cliente</title>
+    <title>Trubish</title>
 
     <!-- Bootstrap - referências para as folhas de estilo -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -31,7 +31,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="/paginaPrincipal">Home</a></li>
+                        {{#if (equals tipoUsuario "cliente")}}
+                            <li class="nav-item"><a class="nav-link" href="/cliente">Home</a></li>
+                        {{/if}}
+
+                        {{#if (equals tipoUsuario "coletor")}}
+                            <li class="nav-item"><a class="nav-link" href="/coletor">Home</a></li>
+                        {{/if}}
+
+                        {{#if (equals tipoUsuario "tratamento")}}
+                            {{!-- Criar esta view --}}
+                            <li class="nav-item"><a class="nav-link" href="/tratamento">Home</a></li>
+                        {{/if}}
+
                         <li class="nav-item"><a class="nav-link" href="/alterarCadastro">Minha Conta</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -45,11 +57,10 @@
                                 {{/if}}
 
                                 {{#if (equals tipoUsuario "coletor")}}
-                                    {{!-- Corrigir os nomes dos arquivos quando forem adicionados --}}
-                                    <li><a class="dropdown-item" href="coletasPendentes.html">Coletas Pendentes</a></li>
-                                    <li><a class="dropdown-item" href="historicoColeta.html">Histórico de Coletas</a></li>
-                                    <li><a class="dropdown-item" href="recursosColeta.html">Recursos para Coletas</a></li>
-                                    <li><a class="dropdown-item" href="graficosDesempenho.html">Gráficos de Desempenho</a></li>
+                                    <li><a class="dropdown-item" href="/coleColetasPendentes">Coletas Pendentes</a></li>
+                                    <li><a class="dropdown-item" href="/coleHistoricoColeta">Histórico de Coletas</a></li>
+                                    <li><a class="dropdown-item" href="/coleRecursosColeta">Recursos para Coletas</a></li>
+                                    <li><a class="dropdown-item" href="/coleGraficosDesempenho">Gráficos de Desempenho</a></li>
                                 {{/if}}
 
                                 {{#if (equals tipoUsuario "tratamento")}}

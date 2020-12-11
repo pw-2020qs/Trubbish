@@ -44,7 +44,7 @@ export async function clienteHome(req: e.Request, res: e.Response) {
         const pedidosPassados = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
         const pedidosFuturos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
         res.render("cliente", {
-            layout: "clienteLogado.handlebars",
+            layout: "main.handlebars",
             pedidosPassados: pedidosPassados,
             pedidosFuturos: pedidosFuturos
         })
@@ -54,7 +54,7 @@ export async function clienteHome(req: e.Request, res: e.Response) {
 }
 
 export function cliNovoPedido(req: e.Request, res: e.Response) {
-    res.render("cliNovoPedido",{layout: "clienteLogado.handlebars"})
+    res.render("cliNovoPedido",{layout: "main.handlebars"})
 }
 
 export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
@@ -63,7 +63,7 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
     if (usuario){
         const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
         res.render("cliHistoricoPedidos",{
-            layout: "clienteLogado.handlebars",
+            layout: "main.handlebars",
             pedidos: pedidos,
             pedido: (pedidos?pedidos[0]:"")//so estou usando para fazer uma pre populacao na secao de detalhes
         })
@@ -77,7 +77,7 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
     if (usuario){
         const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
         res.render("cliColetasAgendadas", {
-            layout: "clienteLogado.handlebars",
+            layout: "main.handlebars",
             pedidos: pedidos,
             pedido: (pedidos?pedidos[0]:"")//so estou usando para fazer uma pre populacao na secao de detalhes
         })
@@ -90,19 +90,19 @@ export async function alterarCadastro(req: e.Request, res: e.Response) {
     try {
         if(req.session.tipoUsuario == "cliente"){
             res.render("alterarCadastro", {
-                layout: "clienteLogado.handlebars",
+                layout: "main.handlebars",
                 usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
         else if(req.session.tipoUsuario == "coletor"){
             res.render("alterarCadastro", {
-                layout: "coletorLogado.handlebars",
+                layout: "main.handlebars",
                 usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
         else{
             res.render("alterarCadastro", {
-                layout: "tratamentoLogado.handlebars",
+                layout: "main.handlebars",
                 usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
@@ -111,20 +111,24 @@ export async function alterarCadastro(req: e.Request, res: e.Response) {
     }    
 }
 
+export function coletorHome(req: e.Request, res: e.Response) {
+    res.render("coletor", {layout: "main.handlebars"})
+}
+
 export function coleGraficosDesempenho(req: e.Request, res: e.Response){
-    res.render("coleGraficosDesempenho", {layout: "coletorLogado.handlebars"})
+    res.render("coleGraficosDesempenho", {layout: "main.handlebars"})
 }
 
 export function coleRecursosColeta(req: e.Request, res: e.Response){
-    res.render("coleRecursosColeta", {layout: "coletorLogado.handlebars"} )
+    res.render("coleRecursosColeta", {layout: "main.handlebars"} )
 }
 
 export function coleHistoricoColeta(req: e.Request, res: e.Response){
-    res.render("coleHistoricoColeta", {layout: "coletorLogado.handlebars"})
+    res.render("coleHistoricoColeta", {layout: "main.handlebars"})
 }
 
 export function coleColetasPendentes(req: e.Request, res: e.Response){
-    res.render("coleColetasPendentes", {layout: "coletorLogado.handlebars"})
+    res.render("coleColetasPendentes", {layout: "main.handlebars"})
 }
 
 /* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
@@ -150,7 +154,7 @@ export async function login(req: e.Request, res: e.Response) {
                 res.redirect("/cliente")
             /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/
             else if (usuario.tipoUsuario == "coletor")
-                res.render("coletor", {layout: "coletorLogado.handlebars"})
+                res.redirect("/coletor")
             else
                 res.render("coletor")
             console.log("Senha correta")

@@ -127,6 +127,8 @@ app.post("/login", controllerUsuario.login)
 
 app.get("/logout", autenticar, controllerUsuario.logout)
 
+app.get("/coletor", autenticar, verificarTipoColetor, controllerUsuario.coletorHome)
+
 app.get("/coleColetasPendentes", autenticar, verificarTipoColetor, controllerUsuario.coleColetasPendentes)
 
 app.get("/coleHistoricoColeta", autenticar, verificarTipoColetor, controllerUsuario.coleHistoricoColeta)
