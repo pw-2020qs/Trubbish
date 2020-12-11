@@ -1,6 +1,6 @@
 import e from "express"
 import * as path from "path"
-import * as controller from "./controllers/controller-usuarios"
+import * as controllerUsuario from "./controllers/controller-usuarios"
 import * as controllerPed from "./controllers/controller-pedidos"
 import * as modelCli from "./models/model-usuarios"
 import * as modelPed from "./models/model-pedidos"
@@ -106,38 +106,43 @@ app.use('/static', e.static(STATIC_DIR))
  */
 
 /* A fazer - implementar as demais rotas para coletor e tratamento */
-app.get("/", controller.paginaPrincipal)
+app.get("/", controllerUsuario.paginaPrincipal)
 
-app.get("/paginaPrincipal", controller.paginaPrincipal)
+app.get("/paginaPrincipal", controllerUsuario.paginaPrincipal)
 
-app.get("/cliente", autenticar, verificarTipoCliente, controller.clienteHome)
+app.get("/cliente", autenticar, verificarTipoCliente, controllerUsuario.clienteHome)
 
-app.get("/cliColetasAgendadas", autenticar, verificarTipoCliente, controller.cliColetasAgendadas)
+app.get("/cliColetasAgendadas", autenticar, verificarTipoCliente, controllerUsuario.cliColetasAgendadas)
 
-app.get("/cliHistoricoPedidos", autenticar, verificarTipoCliente, controller.cliHistoricoPedidos)
+app.get("/cliHistoricoPedidos", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
 
-app.get("/alterarCadastro", autenticar, controller.alterarCadastro)
+app.get("/alterarCadastro", autenticar, controllerUsuario.alterarCadastro)
 
-app.get("/cliNovoPedido", autenticar, verificarTipoCliente, controller.cliNovoPedido)
+app.get("/cliNovoPedido", autenticar, verificarTipoCliente, controllerUsuario.cliNovoPedido)
 
-app.get("/cadastro", controller.cadastro)
+app.get("/cadastro", controllerUsuario.cadastro)
 
-app.post("/login", controller.login)
+app.post("/login", controllerUsuario.login)
 
-app.get("/logout", autenticar, controller.logout)
+app.get("/logout", autenticar, controllerUsuario.logout)
 
-app.get("/coleColetasPendentes", autenticar, verificarTipoColetor, controller.coleColetasPendentes)
+app.get("/coleColetasPendentes", autenticar, verificarTipoColetor, controllerUsuario.coleColetasPendentes)
 
-app.get("/coleHistoricoColeta", autenticar, verificarTipoColetor, controller.coleHistoricoColeta)
+app.get("/coleHistoricoColeta", autenticar, verificarTipoColetor, controllerUsuario.coleHistoricoColeta)
 
-app.get("/coleRecursosColeta", autenticar, verificarTipoColetor, controller.coleRecursosColeta)
+app.get("/coleRecursosColeta", autenticar, verificarTipoColetor, controllerUsuario.coleRecursosColeta)
 
-app.get("/coleGraficosDesempenho", autenticar, verificarTipoColetor, controller.coleGraficosDesempenho)
+app.get("/coleGraficosDesempenho", autenticar, verificarTipoColetor, controllerUsuario.coleGraficosDesempenho)
 
 app.get("/")
 
 app.post("/cadastro", multiparty(), (req, res) => {
-    controller.cadastrarUsuario(req, res)
+    controllerUsuario.cadastrarUsuario(req, res)
+    cleanup(req)
+})
+
+app.post("/alterarCadastro", multiparty(), (req, res) => {
+    controllerUsuario.atualizaCadastro(req, res)
     cleanup(req)
 })
 

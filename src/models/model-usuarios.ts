@@ -104,8 +104,11 @@ export class UsuarioDAO {
     /* Implementar no controller*/
     async atualizarCadatro(usuario: Usuario){
         try {
-            const resposta = await this.buscarColecao().replaceOne({nomeUsuario: usuario.nomeUsuario}, usuario)
-            return (resposta) ? resposta.modifiedCount > 0 : false  
+            bcrypt.hash(usuario.senha, 10, async  (err, hash) => {
+                usuario.senha = hash
+                const resposta = await this.buscarColecao().replaceOne({nomeUsuario: usuario.nomeUsuario}, usuario)
+                return (resposta) ? resposta.modifiedCount > 0 : false  
+            })
         } catch (error) {
             console.error("Não foi possível atualizar o usuário")
             throw error

@@ -55,25 +55,24 @@ export async function alterarCadastro(req: e.Request, res: e.Response) {
     try {
         if(req.session.tipoUsuario == "cliente"){
             res.render("alterarCadastro", {
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
         else if(req.session.tipoUsuario == "coletor"){
             res.render("alterarCadastro", {
                 layout: "coletorLogado.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
         else{
             res.render("alterarCadastro", {
                 layout: "tratamentoLogado.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)//temporario so para teste
+                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
     } catch (err) {
         throw err
-    }
-    
+    }    
 }
 
 export function coleGraficosDesempenho(req: e.Request, res: e.Response){
@@ -195,6 +194,73 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
     } catch (error) {
         console.error(error)
         res.redirect("/cadastro")
+    }
+
+}
+
+export async function atualizaCadastro(req: e.Request, res: e.Response){
+
+    const getField = (name: string) =>
+        (name in req.fields) ? req.fields[name].pop() : ""
+    const saveProfilePicture = async (file: multipartyExpress.File | undefined) => {
+        try {
+            const fileInfo = await fs.promises.stat(file?.path || "")
+
+            if (file && fileInfo.isFile() && fileInfo.size > 0) {
+                const filename = path.basename(file.path)
+                const newPath = path.join(config.upload_dir, filename)
+                console.log("copiando arquivo")
+                await fs.promises.copyFile(file.path, newPath)
+
+                return filename
+            }
+        } catch (error) {
+            console.error("Failed to move profile picture")
+            throw error
+        }
+
+        return ""
+    }
+
+    // const nomeUsuario = getField("usuario")
+    const nomeUsuario = req.session.nomeUsuario || ""
+    // console.log("usuario sessao:")
+    // console.log(req.session.nomeUsuario)
+    const senha = getField("senha")
+    const nomeEmpresa = getField("nomeEmpresa")
+    const email = getField("email")
+    const telefone = getField("telefone")
+    const cnpj = getField("cnpj")
+    const ramoEmpresa = getField("ramoEmpresa")
+    const avatarPerfil = getField("avatarPerfil")
+    const tipoUsuario = getField("tipoUsuario")
+
+    const profile = new modelUsuario.Usuario(nomeUsuario
+        , senha
+        , nomeEmpresa
+        , email
+        , telefone
+        , cnpj
+        , ramoEmpresa
+        , avatarPerfil
+        , tipoUsuario)
+
+    console.log(req.files)
+    try {
+        console.log("chegou aqui")
+        if ("picture" in req.files) {
+            console.log("salvando")
+            profile.avatarPerfil =
+                await saveProfilePicture(req.files["picture"].pop())
+        }
+        console.log("Atualizando usuário")
+        console.log(profile)
+        await modelUsuario.UsuarioDAO.buscarIntancia().atualizarCadatro(profile)
+        res.redirect("/")
+
+    } catch (error) {
+        console.error(error)
+        res.redirect("/alterarCadastro")
     }
 
 }
