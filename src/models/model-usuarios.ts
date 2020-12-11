@@ -134,3 +134,15 @@ export class UsuarioDAO {
 }
 
 /* Implementar DAO semelhante para informações dos pedidos */
+
+export function gerarEmpresaVazia(): Usuario {
+    return new Usuario("",
+        "",
+        "",
+        "",
+        "",
+        0,
+        "",
+        "",
+        "")
+}

@@ -115,7 +115,7 @@ app.get("/cliente", autenticar, verificarTipoCliente, controllerUsuario.clienteH
 
 app.get("/cliColetasAgendadas/:id", autenticar, verificarTipoCliente, controllerUsuario.cliColetasAgendadas)
 
-app.get("/cliHistoricoPedidos", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
+app.get("/cliHistoricoPedidos/:id", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
 
 app.get("/alterarCadastro", autenticar, controllerUsuario.alterarCadastro)
 

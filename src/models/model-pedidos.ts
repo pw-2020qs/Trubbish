@@ -184,12 +184,12 @@ export function ehValido(pedido: Pedido): boolean {
 }
 
 export function gerarPedidoVazio(): Pedido {
-    return new Pedido("Sem empresa",
-    "Sem Empresa",
-    "Sem Tipo Resíduo",
+    return new Pedido("",
+    "",
+    "",
     0,
-    "Sem Data",
-    "Sem Horário",
-    "Sem Endereço",
+    "",
+    "",
+    "",
     "coleta")
 }

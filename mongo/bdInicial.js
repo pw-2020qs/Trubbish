@@ -4,7 +4,7 @@
 db = connect('127.0.0.1:27017/trubbish');
 
 // drop db
-db.dropDatabase()
+db.dropDatabase();
 // recreate db
 db = connect('127.0.0.1:27017/trubbish');
 // create collection
@@ -33,7 +33,7 @@ db.usuarios.insertOne({
     ,"ramoEmpresa": "Eletronicos"
     ,"avatarPerfil": "imagem_pefil_1"
     ,"tipoUsuario": "cliente"
-})
+});
 
 db.usuarios.insertOne({
     "nomeUsuario": "coletor"
@@ -46,7 +46,7 @@ db.usuarios.insertOne({
     ,"ramoEmpresa": "Eletronicos"
     ,"avatarPerfil": "imagem_pefil_1"
     ,"tipoUsuario": "coletor"
-})
+});
 
 db.usuarios.insertOne({
     "nomeUsuario": "tratamento"
@@ -59,7 +59,7 @@ db.usuarios.insertOne({
     ,"ramoEmpressa": "Eletronicos"
     ,"avatarPerfil": "imagem_pefil_1"
     ,"tipoUsuario": "tratamento"
-})
+});
 
 /* db.profiles.insertOne({
     "nomeUsuario": "cliente"
@@ -76,7 +76,7 @@ db.usuarios.insertOne({
 // unique index
 db.usuarios.createIndex({'nomeUsuario': 1}, {unique: true});
 
-db.createCollection('pedidos')
+db.createCollection('pedidos');
 
 db.pedidos.insertOne({
     "idPedido" : 1
@@ -90,7 +90,7 @@ db.pedidos.insertOne({
     ,"endereco" : "Rua nao existente 9999"
     ,"tipoPedido" : "Coleta"
     ,"status" : "aceito"
-})
+});
 
 db.pedidos.insertOne({
     "idPedido" : 2
@@ -104,7 +104,7 @@ db.pedidos.insertOne({
     ,"endereco" : "Rua nao existente 9999"
     ,"tipoPedido" : "Coleta"
     ,"status" : "aceito"
-})
+});
 
 db.pedidos.insertOne({
     "idPedido" : 3
@@ -118,7 +118,7 @@ db.pedidos.insertOne({
     ,"endereco" : "Rua dingle bell 9999"
     ,"tipoPedido" : "Coleta"
     ,"status" : "aceito"
-})
+});
 
 db.pedidos.insertOne({
     "idPedido" : 4
@@ -132,6 +132,6 @@ db.pedidos.insertOne({
     ,"endereco" : "Rua nao existente 9999"
     ,"tipoPedido" : "Entrega"
     ,"status" : "aceito"
-})
+});
 
 db.pedidos.createIndex({'idPedido': 1}, {unique: true});
