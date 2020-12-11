@@ -76,7 +76,7 @@ export async function login(req: e.Request, res: e.Response) {
                 res.redirect("/cliente")
             /* implementar essas telas abaixo e mudar o layout do menu de acordo com o usuário*/
             else if (usuario.tipoUsuario == "coletor")
-                res.render("tratamento")
+                res.render("coletor", {layout: "coletorLogado.handlebars"})
             else
                 res.render("coletor")
             console.log("Senha correta")
