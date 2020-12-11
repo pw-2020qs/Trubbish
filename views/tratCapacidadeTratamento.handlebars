@@ -1,0 +1,115 @@
+<div class="card-deck p-5">
+
+
+    <div class="card">
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Capacidade</h3>
+            <div class="container my-4">
+                <div class="row">
+                    <div class="col-md-6 mt-3 text-center">
+                        <p>Metal</p>
+                        <canvas id="pieChartMetal" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-md-6 mt-3 text-center">
+                        <p>Vidro</p>
+                        <canvas id="pieChartVidro" width="300" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3 text-center">
+                        <p>Papel</p>
+                        <canvas id="pieChartPapel" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-md-6 mt-3 text-center">
+                        <p>Plástico</p>
+                        <canvas id="pieChartPlastico" width="300" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3 text-center">
+                        <p>Orgânico</p>
+                        <canvas id="pieChartOrganico" width="300" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Atualizar Capacidade</h3>
+            <div class="text-center">
+                <h3 style="color: #376F8B;">Metal</h3>
+            </div>
+            <div class="dropdown text-center">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Mudar tipo de lixo
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Metal</a>
+                    <a class="dropdown-item" href="#">Vidro</a>
+                    <a class="dropdown-item" href="#">Papel</a>
+                    <a class="dropdown-item" href="#">Plástico</a>
+                    <a class="dropdown-item" href="#">Orgânico</a>
+                </div>
+            </div>
+            <div class="input-group-md mt-5 text-center">
+                <input type="text" class="form-control mb-1" placeholder="Quantidade Tratada" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+                <button class="btn btn-outline-light" type="submit">Atualizar</button>
+            </div>
+            <div class="input-group-md mb-3 mt-5 text-center">
+                <input type="text" class="form-control mb-1" placeholder="Quantidade Recebida" aria-label="Usuário"
+                    aria-describedby="basic-addon2">
+                <button class="btn btn-outline-light" type="submit">Atualizar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Alterações Recentes</h3>
+            <table class="table table-striped table-hover table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Alteração</th>
+                        <th scope="col">Relação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">30/10/2020</td>
+                        <td scope="row">15t Metal</td>
+                        <td scope="row">Tratado</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">25/11/2020</td>
+                        <td scope="row">10t Vidro</td>
+                        <td scope="row">Recebido</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">20/11/2020</td>
+                        <td scope="row">20t Metal</td>
+                        <td scope="row">Recebido</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">15/11/2020</td>
+                        <td scope="row">5t Metal</td>
+                        <td scope="row">Tratado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
