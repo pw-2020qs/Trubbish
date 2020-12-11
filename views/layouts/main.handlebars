@@ -38,9 +38,26 @@
                             <a id="specialDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown">Menu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/cliColetasAgendadas">Coletas Agendadas</a></li>
-                                <li><a class="dropdown-item" href="/cliHistoricoPedidos">Histórico de Pedidos</a></li>
-                                <li><a class="dropdown-item" href="/cliNovoPedido">Novo Pedido</a></li>
+                                {{#if (equals tipoUsuario "cliente")}}
+                                    <li><a class="dropdown-item" href="/cliColetasAgendadas">Coletas Agendadas</a></li>
+                                    <li><a class="dropdown-item" href="/cliHistoricoPedidos">Histórico de Pedidos</a></li>
+                                    <li><a class="dropdown-item" href="/cliNovoPedido">Novo Pedido</a></li>
+                                {{/if}}
+
+                                {{#if (equals tipoUsuario "coletor")}}
+                                    {{!-- Corrigir os nomes dos arquivos quando forem adicionados --}}
+                                    <li><a class="dropdown-item" href="coletasPendentes.html">Coletas Pendentes</a></li>
+                                    <li><a class="dropdown-item" href="historicoColeta.html">Histórico de Coletas</a></li>
+                                    <li><a class="dropdown-item" href="recursosColeta.html">Recursos para Coletas</a></li>
+                                    <li><a class="dropdown-item" href="graficosDesempenho.html">Gráficos de Desempenho</a></li>
+                                {{/if}}
+
+                                {{#if (equals tipoUsuario "tratamento")}}
+                                    {{!-- Corrigir os nomes dos arquivos quando forem adicionados --}}
+                                    <li><a class="dropdown-item" href="entregasPendentes.html">Entregas Pendentes</a></li>
+                                    <li><a class="dropdown-item" href="historicoEntregas.html">Histórico de Entregas</a></li>
+                                    <li><a class="dropdown-item" href="capacidadeTratamento.html">Capacidade de Tratamento</a></li>
+                                {{/if}}
                             </ul>
                         </li>
                     </ul>

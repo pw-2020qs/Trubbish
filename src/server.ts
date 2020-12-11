@@ -40,7 +40,7 @@ app.engine("handlebars", hbs({
 }))
 app.set("view engine", "handlebars")
 app.set("views", path.resolve(__dirname, "..", "views"))
-app.engine("handlebars", hbs({ defaultLayout: "main" }))
+//app.engine("handlebars", hbs({ defaultLayout: "main" }))
 
 /**
  * Configure body parser middleware
