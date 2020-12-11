@@ -9,6 +9,7 @@ import * as dbConexao from "./db-conectar"
 import hbs from "express-handlebars"
 import session from "express-session"
 import "./session-data"
+import { multipartyExpress as multiparty, cleanup } from "multiparty-express"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
 
@@ -91,6 +92,8 @@ function verificarTipoTratamento(req: e.Request, res: e.Response, next: e.NextFu
     }
 }
 
+app.use('/picture', e.static(config.upload_dir));
+
 /**
  * static routes
  */
@@ -122,7 +125,10 @@ app.post("/login", controller.login)
 
 app.get("/logout", autenticar, controller.logout)
 
-app.post("/cadastro", controller.cadastrarUsuario)
+app.post("/cadastro", multiparty(), (req, res) => {
+    controller.cadastrarUsuario(req, res)
+    cleanup(req)
+})
 
 
 
@@ -167,12 +173,12 @@ dbConexao.conectar()
         console.error(error.stack)
     })
 
-function sairServidor(){
+function sairServidor() {
     dbConexao.desconectar()
-    .then(() => process.exit())
-    .catch(error => {
-        console.error("Falhaao desligar o servidor")
-    })
+        .then(() => process.exit())
+        .catch(error => {
+            console.error("Falhaao desligar o servidor")
+        })
 }
 
 /* Versão antiga para inicializar o servidor */
