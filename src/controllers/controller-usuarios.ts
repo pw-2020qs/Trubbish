@@ -38,11 +38,11 @@ export function cadastro(req: e.Request, res: e.Response) {
 export async function clienteHome(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
-    if(usuario){
+    if (usuario) {
         // console.log("resultado busca pedidos:")
         // console.log(await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa))
         const pedidosPassados = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
-        const pedidosFuturos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
+        const pedidosFuturos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa, usuario.tipoUsuario)
         res.render("cliente", {
             layout: "main.handlebars",
             pedidosPassados: pedidosPassados,
@@ -50,11 +50,11 @@ export async function clienteHome(req: e.Request, res: e.Response) {
         })
     } else {
         throw Error("Usuario nao encontrado!")
-    }    
+    }
 }
 
 export function cliNovoPedido(req: e.Request, res: e.Response) {
-    res.render("cliNovoPedido",{layout: "main.handlebars"})
+    res.render("cliNovoPedido", { layout: "main.handlebars" })
 }
 
 export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
@@ -63,7 +63,7 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
 
     const idPedido = parseInt(req.params.id) || 0
 
-    if (usuario){
+    if (usuario) {
         const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
         const pedidoEspecifico = await modelPedido.PedidoDAO.buscarIntancia().buscarPedido(idPedido)
         let pedidoExibido
@@ -77,7 +77,7 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
             pedidoExibido = null
         }
 
-        if(pedidoExibido){
+        if (pedidoExibido) {
             const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarEmpAtendente(pedidoExibido.nomeEmpAtendente)
             console.log("Empresa do pedido:")
             console.log(empresaEspecifica)
@@ -90,22 +90,22 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
             }
 
             console.log("TESTE CARREGAMENTO")
-            res.render("cliHistoricoPedidos",{
+            res.render("cliHistoricoPedidos", {
                 layout: "main.handlebars",
                 pedidos: pedidos,
                 pedido: pedidoExibido,
                 empresa: empresaExibida
             })
         }
-        res.render("cliHistoricoPedidos",{
+        res.render("cliHistoricoPedidos", {
             layout: "main.handlebars",
             pedidos: pedidos,
             pedido: pedidoExibido,
             empresa: ""
         })
-        
+
     }
-    
+
 }
 
 export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
@@ -114,8 +114,8 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
 
     const idPedido = parseInt(req.params.id) || 0
 
-    if (usuario){
-        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
+    if (usuario) {
+        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa, usuario.tipoUsuario)
 
         const pedidoEspecifico = await modelPedido.PedidoDAO.buscarIntancia().buscarPedido(idPedido)
         let pedidoExibido
@@ -128,9 +128,9 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
             //pedidoExibido = modelPedido.gerarPedidoVazio()
             pedidoExibido = null
         }
-        if(pedidoExibido){
+        if (pedidoExibido) {
             const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarEmpAtendente(pedidoExibido.nomeEmpAtendente)
-    
+
             let empresaExibida: modelUsuario.Usuario
 
             if (empresaEspecifica) {
@@ -138,24 +138,41 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
             } else {
                 empresaExibida = modelUsuario.gerarEmpresaVazia()
             }
-
+            if (req.session.tipoUsuario == "cliente")
+                res.render("cliColetasAgendadas", {
+                    layout: "main.handlebars",
+                    pedidos: pedidos,
+                    pedido: pedidoExibido,
+                    empresa: empresaExibida
+                })
+            else if (req.session.tipoUsuario == "coletor") {
+                res.render("coleColetasPendentes", {
+                    layout: "main.handlebars",
+                    pedidos: pedidos,
+                    pedido: pedidoExibido,
+                    empresa: empresaExibida
+                })
+            }
+        }
+        if (req.session.tipoUsuario == "cliente")
             res.render("cliColetasAgendadas", {
                 layout: "main.handlebars",
                 pedidos: pedidos,
                 pedido: pedidoExibido,
-                empresa: empresaExibida
+                empresa: ""
+            })
+
+        else if (req.session.tipoUsuario == "coletor") {
+            res.render("coleColetasPendentes", {
+                layout: "main.handlebars",
+                pedidos: pedidos,
+                pedido: pedidoExibido,
+                empresa: ""
             })
         }
 
-        res.render("cliColetasAgendadas", {
-            layout: "main.handlebars",
-            pedidos: pedidos,
-            pedido: pedidoExibido,
-            empresa: ""
-        })
-        
     }
-    
+
 }
 
 export async function alterarCadastro(req: e.Request, res: e.Response) {
@@ -167,43 +184,43 @@ export async function alterarCadastro(req: e.Request, res: e.Response) {
         })
     } catch (err) {
         throw err
-    }    
+    }
 }
 
 export function coletorHome(req: e.Request, res: e.Response) {
-    res.render("coletor", {layout: "main.handlebars"})
+    res.render("coletor", { layout: "main.handlebars" })
 }
 
-export function coleGraficosDesempenho(req: e.Request, res: e.Response){
-    res.render("coleGraficosDesempenho", {layout: "main.handlebars"})
+export function coleGraficosDesempenho(req: e.Request, res: e.Response) {
+    res.render("coleGraficosDesempenho", { layout: "main.handlebars" })
 }
 
-export function coleRecursosColeta(req: e.Request, res: e.Response){
-    res.render("coleRecursosColeta", {layout: "main.handlebars"} )
+export function coleRecursosColeta(req: e.Request, res: e.Response) {
+    res.render("coleRecursosColeta", { layout: "main.handlebars" })
 }
 
-export function coleHistoricoColeta(req: e.Request, res: e.Response){
-    res.render("coleHistoricoColeta", {layout: "main.handlebars"})
+export function coleHistoricoColeta(req: e.Request, res: e.Response) {
+    res.render("coleHistoricoColeta", { layout: "main.handlebars" })
 }
 
-export function coleColetasPendentes(req: e.Request, res: e.Response){
-    res.render("coleColetasPendentes", {layout: "main.handlebars"})
+export function coleColetasPendentes(req: e.Request, res: e.Response) {
+    res.render("coleColetasPendentes", { layout: "main.handlebars" })
 }
 
-export function tratamentoHome(req: e.Request, res: e.Response){
-    res.render("tratamento", {layout: "main.handlebars"})
+export function tratamentoHome(req: e.Request, res: e.Response) {
+    res.render("tratamento", { layout: "main.handlebars" })
 }
 
-export function tratEntregasPendentes(req: e.Request, res: e.Response){
-    res.render("tratEntregasPendentes", {layout: "main.handlebars"})
+export function tratEntregasPendentes(req: e.Request, res: e.Response) {
+    res.render("tratEntregasPendentes", { layout: "main.handlebars" })
 }
 
-export function tratHistoricoEntregas(req: e.Request, res: e.Response){
-    res.render("tratHistoricoEntregas", {layout: "main.handlebars"})
+export function tratHistoricoEntregas(req: e.Request, res: e.Response) {
+    res.render("tratHistoricoEntregas", { layout: "main.handlebars" })
 }
 
-export function tratCapacidadeTratamento(req: e.Request, res: e.Response){
-    res.render("tratCapacidadeTratamento", {layout: "main.handlebars"})
+export function tratCapacidadeTratamento(req: e.Request, res: e.Response) {
+    res.render("tratCapacidadeTratamento", { layout: "main.handlebars" })
 }
 
 /* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
@@ -250,7 +267,7 @@ export async function login(req: e.Request, res: e.Response) {
 /* Função cadastrar usuário */
 
 export async function cadastrarUsuario(req: e.Request, res: e.Response) {
-    
+
 
     const getField = (name: string) =>
         (name in req.fields) ? req.fields[name].pop() : ""
@@ -314,7 +331,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
 
 }
 
-export async function atualizaCadastro(req: e.Request, res: e.Response){
+export async function atualizaCadastro(req: e.Request, res: e.Response) {
 
     const getField = (name: string) =>
         (name in req.fields) ? req.fields[name].pop() : ""
