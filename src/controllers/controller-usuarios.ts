@@ -139,24 +139,10 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
 export async function alterarCadastro(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     try {
-        if(req.session.tipoUsuario == "cliente"){
-            res.render("alterarCadastro", {
-                layout: "main.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
-            })
-        }
-        else if(req.session.tipoUsuario == "coletor"){
-            res.render("alterarCadastro", {
-                layout: "main.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
-            })
-        }
-        else{
-            res.render("alterarCadastro", {
-                layout: "main.handlebars",
-                usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
-            })
-        }
+        res.render("alterarCadastro", {
+            layout: "main.handlebars",
+            usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
+        })
     } catch (err) {
         throw err
     }    
