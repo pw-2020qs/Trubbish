@@ -141,6 +141,7 @@ export async function login(req: e.Request, res: e.Response) {
             req.session.autenticado = true
             req.session.nomeUsuario = usuario.nomeUsuario
             req.session.tipoUsuario = usuario.tipoUsuario
+            req.session.fotoUsuario = usuario.avatarPerfil
 
             if (usuario.tipoUsuario == "cliente")
                 res.redirect("/cliente")

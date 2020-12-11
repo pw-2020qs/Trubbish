@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     res.locals.autenticado = (req.session.autenticado) ? true : false
     res.locals.nomeUsuario = (req.session.nomeUsuario) ? (req.session.nomeUsuario) : ""
     res.locals.tipoUsuario = (req.session.tipoUsuario) ? (req.session.tipoUsuario) : ""
+    res.locals.fotoUsuario = (req.session.fotoUsuario) ? (req.session.fotoUsuario) : "fotoPadrao.jpg"
     next()
 })
 
@@ -93,7 +94,7 @@ function verificarTipoTratamento(req: e.Request, res: e.Response, next: e.NextFu
     }
 }
 
-app.use('/picture', e.static(config.upload_dir));
+app.use('/uploads', e.static(config.upload_dir));
 
 /**
  * static routes
