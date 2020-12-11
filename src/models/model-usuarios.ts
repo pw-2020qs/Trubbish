@@ -2,8 +2,8 @@ import { exception } from "console"
 import { response } from "express"
 import * as fs from "fs"
 import { Db } from "mongodb"
-import { config } from "./config"
-import * as dbConexao from "./db-conectar"
+import { config } from "../config"
+import * as dbConexao from "../db-conectar"
 import * as bcrypt from "bcrypt"
 
 /* A Fazer - Criar classes para pedidos e demais entidades que necessitem, parecido com essa que eu fiz */
@@ -56,6 +56,9 @@ export class UsuarioDAO {
 
     async inserir(usuario: Usuario) {
         try {
+            // Verifica se usuário já existe antes de inserir
+            if(await UsuarioDAO.buscarIntancia().buscarUsuario(usuario.nomeUsuario))
+                throw Error("Usuário existente")
             // Altera senha inserida por hash do bcrypt utilizando salt = 10
             bcrypt.hash(usuario.senha, 10, async  (err, hash) => {
                 usuario.senha = hash

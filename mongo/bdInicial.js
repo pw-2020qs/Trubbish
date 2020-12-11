@@ -38,7 +38,20 @@ db.usuarios.insertOne({
 // unique index
 db.usuarios.createIndex({'nomeUsuario': 1}, {unique: true});
 
+db.createCollection('pedidos')
 
+db.pedidos.insertOne({
+    "idPedido" : 1
+    ,"nomeEmpPedinte" : "Industria 1"
+    ,"nomeEmpAtendente" : "Empresa Coletora 1"
+    ,"tipoResiduo" : "Metal"
+    ,"quantidadeResiduo" : 10
+    ,"quantidadeCaminhoes" : 3
+    ,"dataPedido" : "10/11/2020"
+    ,"horaPedido" : "15:30"
+    ,"endereco" : "Rua nao existente 9999"
+    ,"tipoPedido" : "Coleta"
+    ,"status" : "aceito"
+})
 
-
-
+db.usuarios.createIndex({'idPedido': 1}, {unique: true});

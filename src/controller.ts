@@ -1,9 +1,12 @@
 import e from "express"
 import * as path from "path"
-import * as model from "./model"
+import * as modelUsuario from "./models/model-usuarios"
+import { config } from "./config"
 import bodyParser from "body-parser"
 import hbs from "express-handlebars"
+import * as fs from "fs"
 import * as bcrypt from "bcrypt"
+import multipartyExpress from "multiparty-express"
 
 const STATIC_DIR = path.join(__dirname, '..', 'static')
 
@@ -56,7 +59,7 @@ export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
 
     console.log("Usuário encontrado?")
-    const usuario = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
+    const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
     if (!usuario) {
         console.log("Não encontrado")
         res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
@@ -92,39 +95,69 @@ export async function login(req: e.Request, res: e.Response) {
 
 /* Implementar, a função para selecionar avatar de perfil, mostrar força da senha e selecionar ramo da empresa */
 /* Função cadastrar usuário */
+
 export async function cadastrarUsuario(req: e.Request, res: e.Response) {
-    const nomeUsuario = req.body.usuario     || ""
-    const senha       = req.body.senha       || ""
-    const nomeEmpresa = req.body.nomeEmpresa || ""
-    const email       = req.body.email       || ""
-    const telefone    = req.body.telefone    || ""
-    const cnpj        = req.body.cnpj        || ""
-    const ramoEmpresa = req.body.ramoEmpresa || ""
-    const avatarPerfil= req.body.avatarPerfil|| "caminho/imagem-generica"
-    const tipoUsuario = req.body.tipoUsuario || "cliente"
+    
 
+    const getField = (name: string) =>
+        (name in req.fields) ? req.fields[name].pop() : ""
+    const saveProfilePicture = async (file: multipartyExpress.File | undefined) => {
+        try {
+            const fileInfo = await fs.promises.stat(file?.path || "")
 
-    console.log(req.body)
-    const usuarioExistente = await model.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
-    if (usuarioExistente) {
-        console.error("Usuário já existente!")
-        
+            if (file && fileInfo.isFile() && fileInfo.size > 0) {
+                const filename = path.basename(file.path)
+                const newPath = path.join(config.upload_dir, filename)
+                console.log("copiando arquivo")
+                await fs.promises.copyFile(file.path, newPath)
+
+                return filename
+            }
+        } catch (error) {
+            console.error("Failed to move profile picture")
+            throw error
+        }
+
+        return ""
     }
-    else{
-        const novoUsuario = new model.Usuario(nomeUsuario 
-            ,senha       
-            ,nomeEmpresa 
-            ,email       
-            ,telefone    
-            ,cnpj        
-            ,ramoEmpresa 
-            ,avatarPerfil
-            ,tipoUsuario )
-        console.log(novoUsuario)
-        await model.UsuarioDAO.buscarIntancia().inserir(novoUsuario)
-           
+
+    const nomeUsuario = getField("usuario")
+    const senha = getField("senha")
+    const nomeEmpresa = getField("nomeEmpresa")
+    const email = getField("email")
+    const telefone = getField("telefone")
+    const cnpj = getField("cnpj")
+    const ramoEmpresa = getField("ramoEmpresa")
+    const avatarPerfil = getField("avatarPerfil")
+    const tipoUsuario = "cliente"
+
+    const profile = new modelUsuario.Usuario(nomeUsuario
+        , senha
+        , nomeEmpresa
+        , email
+        , telefone
+        , cnpj
+        , ramoEmpresa
+        , avatarPerfil
+        , tipoUsuario)
+
+    console.log(req.files)
+    try {
+
+        if ("picture" in req.files) {
+            console.log("salvando")
+            profile.avatarPerfil =
+                await saveProfilePicture(req.files["picture"].pop())
+        }
+        console.log("Inserindo usuário")
+        console.log(profile)
+        await modelUsuario.UsuarioDAO.buscarIntancia().inserir(profile)
+        res.redirect("/")
+
+    } catch (error) {
+        console.error(error)
+        res.redirect("/cadastro")
     }
-    res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
 
 }
 
