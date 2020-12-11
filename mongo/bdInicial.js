@@ -16,7 +16,7 @@ db.sequences.insertOne({
 });
 db.sequences.insertOne({
     name: 'pedidos_id',
-    value: 2
+    value: 4
 });
 
 db.createCollection('usuarios');
@@ -80,8 +80,8 @@ db.createCollection('pedidos')
 
 db.pedidos.insertOne({
     "idPedido" : 1
-    ,"nomeEmpPedinte" : "Industria 1"
-    ,"nomeEmpAtendente" : "Empresa Coletora 1"
+    ,"nomeEmpPedinte" : "Empresa ficticia 1"
+    ,"nomeEmpAtendente" : "Empresa coleta 1"
     ,"tipoResiduo" : "Metal"
     ,"quantidadeResiduo" : 10
     ,"quantidadeCaminhoes" : 3
@@ -89,6 +89,34 @@ db.pedidos.insertOne({
     ,"horaPedido" : "15:30"
     ,"endereco" : "Rua nao existente 9999"
     ,"tipoPedido" : "Coleta"
+    ,"status" : "aceito"
+})
+
+db.pedidos.insertOne({
+    "idPedido" : 2
+    ,"nomeEmpPedinte" : "Empresa ficticia 1"
+    ,"nomeEmpAtendente" : "Empresa coleta 1"
+    ,"tipoResiduo" : "Plastico"
+    ,"quantidadeResiduo" : 15
+    ,"quantidadeCaminhoes" : 5
+    ,"dataPedido" : "5/11/2020"
+    ,"horaPedido" : "10:00"
+    ,"endereco" : "Rua nao existente 9999"
+    ,"tipoPedido" : "Coleta"
+    ,"status" : "aceito"
+})
+
+db.pedidos.insertOne({
+    "idPedido" : 3
+    ,"nomeEmpPedinte" : "Empresa coleta 1"
+    ,"nomeEmpAtendente" : "Empresa tratamento 1"
+    ,"tipoResiduo" : "Metal"
+    ,"quantidadeResiduo" : 10
+    ,"quantidadeCaminhoes" : 3
+    ,"dataPedido" : "10/11/2020"
+    ,"horaPedido" : "15:30"
+    ,"endereco" : "Rua nao existente 9999"
+    ,"tipoPedido" : "Entrega"
     ,"status" : "aceito"
 })
 

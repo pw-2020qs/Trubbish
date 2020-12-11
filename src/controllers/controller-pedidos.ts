@@ -18,7 +18,8 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
     const tipoResiduo = req.body.tipoResiduo
     const quantidadeResiduo = req.body.quantidadeResiduo
     const endereco = req.body.endereco
-    const tipoPedido = req.body.coleta
+    // const tipoPedido = req.body.coleta
+    const tipoPedido = "coleta"
     const dataPedido = req.body.dataPedido
     const horaPedido = req.body.horaPedido
 

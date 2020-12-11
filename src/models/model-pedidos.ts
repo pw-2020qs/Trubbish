@@ -55,7 +55,7 @@ export class PedidoDAO {
         try {
             // Insere pedido no bd
             const newId = await this.nextId()
-            pedido.idPedido = newId     
+            pedido.idPedido = newId 
             const respInsercao = await this.buscarColecao().insertOne(pedido)
             return (respInsercao) ? respInsercao.insertedCount > 0 : false            
         } catch (error) {
@@ -66,13 +66,13 @@ export class PedidoDAO {
 
     async buscarPedidos(nomeEmpPedinte: string) {
         try {
-            const pedido = await this.buscarColecao().findOne({ nomeEmpPedinte: nomeEmpPedinte })
+            const pedidos = await this.buscarColecao().find({ nomeEmpPedinte: nomeEmpPedinte }).toArray()
 
-            if (pedido)
-                return pedido as Pedido[]
+            if (pedidos)
+                return pedidos as Pedido[]
 
         } catch (error) {
-            console.error("Pedido não encontrado")
+            console.error("Pedidos não encontrados")
             throw error
         }        
     }

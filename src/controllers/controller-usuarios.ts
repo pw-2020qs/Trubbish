@@ -1,6 +1,7 @@
 import e from "express"
 import * as path from "path"
 import * as modelUsuario from "../models/model-usuarios"
+import * as modelPedido from "../models/model-pedidos"
 import { config } from "../config"
 import bodyParser from "body-parser"
 import hbs from "express-handlebars"
@@ -34,20 +35,32 @@ export function cadastro(req: e.Request, res: e.Response) {
     res.render("cadastro", { layout: "naoLogado.handlebars" })
 }
 
-export function clienteHome(req: e.Request, res: e.Response) {
-    res.render("cliente")
+export async function clienteHome(req: e.Request, res: e.Response) {
+    const nomeUsuario = req.session.nomeUsuario || ""
+    const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
+    if(usuario){
+        console.log("resultado busca pedidos:")
+        console.log(await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa))
+        res.render("cliente", {
+            layout: "clienteLogado.handlebars",
+            pedidos: await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+        })
+    } else {
+        throw Error("Usuario nao encontrado!")
+    }    
 }
 
 export function cliNovoPedido(req: e.Request, res: e.Response) {
-    res.render("cliNovoPedido")
+    res.render("cliNovoPedido",{layout: "clienteLogado.handlebars"})
 }
 
 export function cliHistoricoPedidos(req: e.Request, res: e.Response) {
-    res.render("cliHistoricoPedidos")
+    res.render("cliHistoricoPedidos",{layout: "clienteLogado.handlebars"})
 }
 
 export function cliColetasAgendadas(req: e.Request, res: e.Response) {
-    res.render("cliColetasAgendadas")
+    res.render("cliColetasAgendadas",{layout: "clienteLogado.handlebars"})
+    
 }
 
 export async function alterarCadastro(req: e.Request, res: e.Response) {
@@ -55,6 +68,7 @@ export async function alterarCadastro(req: e.Request, res: e.Response) {
     try {
         if(req.session.tipoUsuario == "cliente"){
             res.render("alterarCadastro", {
+                layout: "clienteLogado.handlebars",
                 usuario: await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
             })
         }
