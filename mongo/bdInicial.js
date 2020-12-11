@@ -31,7 +31,7 @@ db.usuarios.insertOne({
     ,"telefone": "1144202020"
     ,"cnpj": 123456789
     ,"ramoEmpresa": "Eletronicos"
-    ,"avatarPerfil": "imagem_pefil_1"
+    ,"avatarPerfil": "fotoPadrao.jpg"
     ,"tipoUsuario": "cliente"
 });
 
@@ -44,7 +44,7 @@ db.usuarios.insertOne({
     ,"telefone": "1144202020"
     ,"cnpj": 123456789
     ,"ramoEmpresa": "Eletronicos"
-    ,"avatarPerfil": "imagem_pefil_1"
+    ,"avatarPerfil": "fotoPadrao.jpg"
     ,"tipoUsuario": "coletor"
 });
 
@@ -57,7 +57,7 @@ db.usuarios.insertOne({
     ,"telefone": "1144202020"
     ,"cnpj": 123456789
     ,"ramoEmpressa": "Eletronicos"
-    ,"avatarPerfil": "imagem_pefil_1"
+    ,"avatarPerfil": "fotoPadrao.jpg"
     ,"tipoUsuario": "tratamento"
 });
 
