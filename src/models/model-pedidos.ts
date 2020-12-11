@@ -77,13 +77,28 @@ export class PedidoDAO {
         }        
     }
 
+    toDate (stringData: string) {
+        const newData = stringData.split("/")
+        return new Date(parseInt(newData[2]), parseInt(newData[1])-1, parseInt(newData[0]))
+    }
+
     async buscarPedidosPassados(nomeEmpPedinte: string) {
         try {
 
             const pedidos = await this.buscarColecao().find({ nomeEmpPedinte: nomeEmpPedinte}).toArray()
 
             if (pedidos){
-                const pedidosPassados = pedidos.filter( x => x.dataPedido.toData() < (new Date().getDate))
+                let pedidosPassados: Pedido[] = []
+                for(let i = 0;i<pedidos.length;i++){
+                    const data = pedidos[i].dataPedido
+                    // console.log("data Pedido:")
+                    // console.log(this.toDate(data))
+                    // console.log("eh Menor que:" + new Date())
+                    // console.log(this.toDate(data) < new Date())
+                    if(this.toDate(data) < new Date())
+                        pedidosPassados.push(pedidos[i])
+                }
+                // const pedidosPassados = pedidos.filter( x => x.dataPedido.< (new Date().getDate))
                 return pedidosPassados as Pedido[]
             }
 
@@ -95,16 +110,24 @@ export class PedidoDAO {
 
     async buscarPedidosFuturos(nomeEmpPedinte: string) {
         try {
+
             const pedidos = await this.buscarColecao().find({ nomeEmpPedinte: nomeEmpPedinte}).toArray()
+
             if (pedidos){
-                const pedidosFuturos = pedidos.filter( x => x.dataPedido.toData() >= (new Date().getDate))
+                let pedidosFuturos: Pedido[] = []
+                for(let i = 0;i<pedidos.length;i++){
+                    const data = pedidos[i].dataPedido
+                    if(this.toDate(data) >= new Date())
+                        pedidosFuturos.push(pedidos[i])
+                }
+                // const pedidosPassados = pedidos.filter( x => x.dataPedido.< (new Date().getDate))
                 return pedidosFuturos as Pedido[]
             }
 
         } catch (error) {
             console.error("Pedidos não encontrados")
             throw error
-        }      
+        }  
     }
 
     async buscarPedido(idPedido: number) {
@@ -155,7 +178,7 @@ export function ehValido(pedido: Pedido): boolean {
         pedido.nomeEmpAtendente.trim() != "" &&
         pedido.tipoResiduo.trim() != "" &&
         pedido.quantidadeResiduo > 0 &&
-        pedido.dataPedido != "" &&
+        pedido.dataPedido != null &&
         pedido.horaPedido != "" &&
         pedido.endereco.trim() != "")
 }

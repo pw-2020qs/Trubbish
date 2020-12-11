@@ -41,9 +41,12 @@ export async function clienteHome(req: e.Request, res: e.Response) {
     if(usuario){
         // console.log("resultado busca pedidos:")
         // console.log(await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa))
+        const pedidosPassados = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
+        const pedidosFuturos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
         res.render("cliente", {
             layout: "clienteLogado.handlebars",
-            pedidos: await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+            pedidosPassados: pedidosPassados,
+            pedidosFuturos: pedidosFuturos
         })
     } else {
         throw Error("Usuario nao encontrado!")
@@ -58,11 +61,11 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
     if (usuario){
-        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosPassados(usuario.nomeEmpresa)
         res.render("cliHistoricoPedidos",{
             layout: "clienteLogado.handlebars",
             pedidos: pedidos,
-            pedido: pedidos?.pop()
+            pedido: (pedidos?pedidos[0]:"")//so estou usando para fazer uma pre populacao na secao de detalhes
         })
     }
     
@@ -72,11 +75,11 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
     const nomeUsuario = req.session.nomeUsuario || ""
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(nomeUsuario)
     if (usuario){
-        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidos(usuario.nomeEmpresa)
+        const pedidos = await modelPedido.PedidoDAO.buscarIntancia().buscarPedidosFuturos(usuario.nomeEmpresa)
         res.render("cliColetasAgendadas", {
             layout: "clienteLogado.handlebars",
             pedidos: pedidos,
-            pedido: pedidos?.pop()
+            pedido: (pedidos?pedidos[0]:"")//so estou usando para fazer uma pre populacao na secao de detalhes
         })
     }
     

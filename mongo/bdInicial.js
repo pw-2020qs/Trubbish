@@ -16,7 +16,7 @@ db.sequences.insertOne({
 });
 db.sequences.insertOne({
     name: 'pedidos_id',
-    value: 4
+    value: 5
 });
 
 db.createCollection('usuarios');
@@ -108,6 +108,20 @@ db.pedidos.insertOne({
 
 db.pedidos.insertOne({
     "idPedido" : 3
+    ,"nomeEmpPedinte" : "Empresa ficticia 1"
+    ,"nomeEmpAtendente" : "Empresa coleta 1"
+    ,"tipoResiduo" : "Vidro"
+    ,"quantidadeResiduo" : 25
+    ,"quantidadeCaminhoes" : 10
+    ,"dataPedido" : "25/12/2020"
+    ,"horaPedido" : "11:00"
+    ,"endereco" : "Rua dingle bell 9999"
+    ,"tipoPedido" : "Coleta"
+    ,"status" : "aceito"
+})
+
+db.pedidos.insertOne({
+    "idPedido" : 4
     ,"nomeEmpPedinte" : "Empresa coleta 1"
     ,"nomeEmpAtendente" : "Empresa tratamento 1"
     ,"tipoResiduo" : "Metal"
