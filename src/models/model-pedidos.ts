@@ -143,6 +143,8 @@ export class PedidoDAO {
         }        
     }
 
+    // async remover pedido()
+
     async listarTodos() {
         try {
             return await this.buscarColecao().find({}, { projection: { _id: 0 } }).toArray() || []
