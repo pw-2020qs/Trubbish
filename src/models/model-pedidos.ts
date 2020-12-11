@@ -145,6 +145,16 @@ export class PedidoDAO {
         }
     }
 
+    async removerPedido(idPedido: number){
+        try {
+            const pedido = await this.buscarColecao().deleteOne({ idPedido: idPedido })
+
+        } catch (error) {
+            console.error("Pedido não encontrado")
+            throw error
+        }
+    }
+
     // async remover pedido()
 
     async listarTodos() {
