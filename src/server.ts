@@ -1,6 +1,7 @@
 import e from "express"
 import * as path from "path"
-import * as controller from "./controller"
+import * as controller from "./controllers/controller-usuarios"
+import * as controllerPed from "./controllers/controller-pedidos"
 import * as modelCli from "./models/model-usuarios"
 import * as modelPed from "./models/model-pedidos"
 import bodyParser from "body-parser"
@@ -129,6 +130,8 @@ app.post("/cadastro", multiparty(), (req, res) => {
     controller.cadastrarUsuario(req, res)
     cleanup(req)
 })
+
+app.post("/criarPedidoCliente", autenticar, verificarTipoCliente, controllerPed.criarPedidoCliente)
 
 
 

@@ -3,16 +3,16 @@
     <div class="card-body p-5 ">
         <h3 class="card-title text-center">Novo Pedido</h3>
         <p class="card-text">
-        <form>
+        <form action="/criarPedidoCliente" method="post">
             <div class="input-group-md mb-3">
-                <input type="text" class="form-control" placeholder="Nome da Empresa" aria-label="NovoPedido"
+                <input type="text" name="empresa" class="form-control" placeholder="Empresa Solicitada" aria-label="NovoPedido"
                     aria-describedby="basic-addon2">
             </div>
             <div class="input-group-md mb-3">
-                <input type="text" class="form-control" placeholder="Endereço de coleta" aria-label="NovoPedido"
+                <input type="text" name="endereco" class="form-control" placeholder="Endereço de coleta" aria-label="NovoPedido"
                     aria-describedby="basic-addon2">
             </div>
-            <div class="dropdown mb-3" style="text-align: center">
+            {{!-- <div class="dropdown mb-3" style="text-align: center">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tipo de Resíduo
@@ -26,9 +26,20 @@
                     <a class="dropdown-item" href="#">Não Reciclado</a>
                     <a class="dropdown-item" href="#">Outros</a>
                 </div>
+            </div> --}}
+            <div class="dropdown mb-3" style="text-align: center;">
+                <select name="tipoResiduo" class="btn btn-secondary dropdown-toggle" aria-placeholder="Tipo de Resíduo">
+                    <option value="Plástico">Plástico</option>
+                    <option value="Vidro">Vidro</option>
+                    <option value="Papel">Papel</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Orgânico">Orgânico</option>
+                    <option value="Não Reciclado">Não Reciclado</option>
+                    <option value="Outros">Outros</option>
+                </select>
             </div>
             <div class="input-group-md mb-3">
-                <input type="text" class="form-control" placeholder="Quantidade (Toneladas)" aria-label="NovoPedido"
+                <input type="text" name="quantidadeResiduo" class="form-control" placeholder="Quantidade (Toneladas)" aria-label="NovoPedido"
                     aria-describedby="basic-addon2">
             </div>
             <div class="md-form input-group mb-3">
