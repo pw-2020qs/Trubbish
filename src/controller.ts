@@ -51,7 +51,15 @@ export function cliColetasAgendadas(req: e.Request, res: e.Response) {
 }
 
 export function alterarCadastro(req: e.Request, res: e.Response) {
-    res.render("alterarCadastro")
+    if(req.session.tipoUsuario == "cliente"){
+        res.render("alterarCadastro")
+    }
+    else if(req.session.tipoUsuario == "coletor"){
+        res.render("alterarCadastro", {layout: "coletorLogado.handlebars"})
+    }
+    else{
+        res.render("alterarCadastro", {layout: "tratamentoLogado.handlebars"})
+    }
 }
 
 export function coleGraficosDesempenho(req: e.Request, res: e.Response){
