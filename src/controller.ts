@@ -129,7 +129,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
     const cnpj = getField("cnpj")
     const ramoEmpresa = getField("ramoEmpresa")
     const avatarPerfil = getField("avatarPerfil")
-    const tipoUsuario = "cliente"
+    const tipoUsuario = getField("tipoUsuario")
 
     const profile = new modelUsuario.Usuario(nomeUsuario
         , senha
