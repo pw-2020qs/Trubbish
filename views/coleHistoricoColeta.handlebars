@@ -1,0 +1,141 @@
+<div class="card-deck p-5">
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="card-title text-center">Histórico de Pedidos de Coleta </h3>
+            <div class="container my-4">
+                <table class="table table-striped table-hover table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th scope="col">Horário</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Frota Usada</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">11:30</td>
+                            <td scope="row">21/10/2020</td>
+                            <td scope="row">2 Caminhões</td>
+                            <td scope="row">
+                                <form class="form-inline" method="POST" action="#">
+                                    <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">16:30</td>
+                            <td scope="row">19/10/2020</td>
+                            <td scope="row">1 Caminhão</td>
+                            <td scope="row">
+                                <form class="form-inline" method="POST" action="#">
+                                    <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">18:00</td>
+                            <td scope="row">12/10/2020</td>
+                            <td scope="row">1 Caminhão</td>
+                            <td scope="row">
+                                <form class="form-inline" method="POST" action="#">
+                                    <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">08:00</td>
+                            <td scope="row">01/10/2020</td>
+                            <td scope="row">4 Caminhões</td>
+                            <td scope="row">
+                                <form class="form-inline" method="POST" action="#">
+                                    <button class="btn btn-outline-light" type="submit">Detalhes</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="card-title text-center">Detalhes</h3>
+            <p class="card-text">
+            <div class="mb-3">
+                <p>
+                    <span>ID:</span>
+                    <span id="idColeta">#00005534</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <span>Horário</span>
+                <span id="horarioColeta">11:30</span>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Coletado em:</span>
+                    <span id="dataColeta">21/10/2020</span>
+                </p>
+            </div>
+            <div class="md-form input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text md-addon" id="Endereco">Endereço da Coleta:</span>
+                </div>
+                <input disabled type="text" class="form-control" placeholder="Av chicao vale 987"
+                    aria-label="EnredecoTratado" aria-describedby="basic-addon2">
+            </div>
+            <div class="md-form input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text md-addon" id="Empresa">Empresa Atendida:</span>
+                </div>
+                <input disabled type="text" class="form-control" placeholder="Two Benghals Studios"
+                    aria-label="EmpresaN" aria-describedby="basic-addon2">
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>CNPJ:</span>
+                    <span id="cnpjColeta">11.111.111/1111-11</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Telefone:</span>
+                    <span id="telefoneColeta">(99)99999-9999</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Email:</span>
+                    <span id="emailColeta">twobenghalsstudios@email.com</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Resíduo:</span>
+                    <span id="residuoColeta">Plástico e Metal</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Quantidade:</span>
+                    <span id="quantidadeColeta">2 Toneladas</span>
+                </p>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span>Frota Usada:</span>
+                    <span id="frotaColeta">2 Caminhões</span>
+                </p>
+            </div>
+            <div class="mb-3 text-center">
+                <button class="btn btn-success" type="submit">Aceitar</button>
+                <button class="btn btn-danger" type="submit">Recusar</button>
+            </div>
+            </p>
+        </div>
+    </div>
+
+</div>

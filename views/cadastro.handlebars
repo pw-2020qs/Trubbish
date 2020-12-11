@@ -3,54 +3,7 @@
         <h3 class="card-title text-center">Cadastro</h3>
         <p class="card-text">
         <form action="/cadastro" method="post" enctype="multipart/form-data">
-            <div class="input-group-md mb-3">
-                <input type="text" class="form-control" name="nomeEmpresa" placeholder="Nome da empresa"
-                    aria-label="Usuário" aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group-md mb-3">
-                <input type="text" class="form-control" name="email" placeholder="E-mail" aria-label="Usuário"
-                    aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group-md mb-3">
-                <input type="text" class="form-control" name="usuario" placeholder="Nome de usuário"
-                    aria-label="Usuário" aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group-md mb-3">
-                <input type="password" class="form-control" name="senha" placeholder="Senha" aria-label="Senha"
-                    aria-describedby="basic-addon2">
-                <div class="progress progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%"
-                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="input-group-md mb-3">
-                <input type="text" class="form-control" name="telefone" placeholder="Telefone" aria-label="Usuário"
-                    aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group-md mb-3">
-                <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" aria-label="Usuário"
-                    aria-describedby="basic-addon2">
-            </div>
-            <div class="dropdown mb-3">
-                <h6>Ramo da empresa</h6>
-                <select name="ramoEmpresa" class="btn btn-secondary dropdown-toggle" aria-placeholder="Ramo empresa">
-                    <option value="Química">Química</option>
-                    <option value="Construção">Construção</option>
-                    <option value="Eletronicos">Eletronicos</option>
-                </select>
-            </div>
-
-            <div class="dropdown mb-3">
-                <h6>Tipo de usuário</h6>
-                <select name="tipoUsuario" class="btn btn-secondary dropdown-toggle" aria-placeholder="Ramo empresa">
-                    <option value="cliente">Cliente</option>
-                    <option value="coletor">Coletor</option>
-                    <option value="tratamento">Tratamento</option>
-                </select>
-            </div>
-
-            <div class="col form-group">
-                <h6>Foto perfil</h6>
-                <input type="file" name="picture">
-            </div>
+            {{> cadastro-form}}
 
             <div class="input-group-md mb-3">
                 <button class="btn btn-secondary btn-lg btn-block" type="submit">Cadastrar</button>

@@ -59,6 +59,9 @@ export class UsuarioDAO {
             // Verifica se usuário já existe antes de inserir
             if(await UsuarioDAO.buscarIntancia().buscarUsuario(usuario.nomeUsuario))
                 throw Error("Usuário existente")
+            // caso queiram implementar ids incrementais no usuario
+            // const newId = await this.nextId()
+            // usuario.id = newId 
             // Altera senha inserida por hash do bcrypt utilizando salt = 10
             bcrypt.hash(usuario.senha, 10, async  (err, hash) => {
                 usuario.senha = hash
@@ -78,9 +81,9 @@ export class UsuarioDAO {
         try {
             const usuario = await this.buscarColecao().findOne({ nomeUsuario: nomeUsuario })
 
-            if (usuario)
+            if (usuario){
                 return usuario as Usuario
-
+            }
         } catch (error) {
             console.error("Usuário não encontrado")
             throw error
