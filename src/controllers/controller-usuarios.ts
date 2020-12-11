@@ -231,7 +231,7 @@ export async function login(req: e.Request, res: e.Response) {
             else if (usuario.tipoUsuario == "coletor")
                 res.redirect("/coletor")
             else
-                res.render("coletor")
+                res.render("tratamento")
             console.log("Senha correta")
         }
         /* Caso a senha esteja incorreta ou o usuário não exista, retorna para a o menu principal */
