@@ -182,3 +182,14 @@ export function ehValido(pedido: Pedido): boolean {
         pedido.horaPedido != "" &&
         pedido.endereco.trim() != "")
 }
+
+export function gerarPedidoVazio(): Pedido {
+    return new Pedido("Sem empresa",
+    "Sem Empresa",
+    "Sem Tipo Resíduo",
+    0,
+    "Sem Data",
+    "Sem Horário",
+    "Sem Endereço",
+    "coleta")
+}

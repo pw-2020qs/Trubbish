@@ -89,15 +89,7 @@ export async function cliColetasAgendadas(req: e.Request, res: e.Response) {
             pedidoExibido = pedidos[0]
         }
         else {
-            // pedido vazio para exibição
-            pedidoExibido = new modelPedido.Pedido("Sem empresa",
-                "Sem Empresa",
-                "Sem Tipo Resíduo",
-                0,
-                "Sem Data",
-                "Sem Horário",
-                "Sem Endereço",
-                "coleta")
+            pedidoExibido = modelPedido.gerarPedidoVazio()
         }
 
         res.render("cliColetasAgendadas", {
