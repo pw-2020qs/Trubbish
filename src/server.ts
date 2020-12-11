@@ -125,6 +125,16 @@ app.post("/login", controller.login)
 
 app.get("/logout", autenticar, controller.logout)
 
+app.get("/coleColetasPendentes", autenticar, verificarTipoColetor, controller.coleColetasPendentes)
+
+app.get("/coleHistoricoColeta", autenticar, verificarTipoColetor, controller.coleHistoricoColeta)
+
+app.get("/coleRecursosColeta", autenticar, verificarTipoColetor, controller.coleRecursosColeta)
+
+app.get("/coleGraficosDesempenho", autenticar, verificarTipoColetor, controller.coleGraficosDesempenho)
+
+app.get("/")
+
 app.post("/cadastro", multiparty(), (req, res) => {
     controller.cadastrarUsuario(req, res)
     cleanup(req)

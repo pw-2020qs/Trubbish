@@ -54,6 +54,22 @@ export function alterarCadastro(req: e.Request, res: e.Response) {
     res.render("alterarCadastro")
 }
 
+export function coleGraficosDesempenho(req: e.Request, res: e.Response){
+    res.render("coleGraficosDesempenho", {layout: "coletorLogado.handlebars"})
+}
+
+export function coleRecursosColeta(req: e.Request, res: e.Response){
+    res.render("coleRecursosColeta", {layout: "coletorLogado.handlebars"} )
+}
+
+export function coleHistoricoColeta(req: e.Request, res: e.Response){
+    res.render("coleHistoricoColeta", {layout: "coletorLogado.handlebars"})
+}
+
+export function coleColetasPendentes(req: e.Request, res: e.Response){
+    res.render("coleColetasPendentes", {layout: "coletorLogado.handlebars"})
+}
+
 /* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
 export async function login(req: e.Request, res: e.Response) {
     console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)

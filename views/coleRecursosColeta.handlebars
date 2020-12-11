@@ -1,0 +1,78 @@
+<div class="card-deck p-5">
+
+
+    <div class="card">
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Capacidade de Armazenamento</h3>
+            <div class="container my-4">
+                <canvas id="pieChartArmazenamento"></canvas>
+            </div>
+
+            <div class="input-group-md mb-3 mt-auto">
+                <input type="text" class="form-control mb-1" placeholder="Capacidade de Armazenamento"
+                    aria-label="Usuário" aria-describedby="basic-addon2">
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Frota de Caminhões</h3>
+            <div class="container my-4">
+                <canvas id="pieChartCaminhoes"></canvas>
+            </div>
+            <div class="input-group-md mb-3 mt-auto">
+                <input type="text" class="form-control mb-1" placeholder="Quantidade de Caminhões na Frota"
+                    aria-label="Usuário" aria-describedby="basic-addon2">
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">OK</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-body p-5 d-flex flex-column">
+            <h3 class="card-title text-center">Alterações Recentes</h3>
+            <table class="table table-striped table-hover table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Alteração</th>
+                        <th scope="col">Relação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">30/10/2020</td>
+                        <td scope="row">8 caminhões</td>
+                        <td scope="row">Aumento</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">25/11/2020</td>
+                        <td scope="row">48t armazenamento</td>
+                        <td scope="row">Redução</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">20/11/2020</td>
+                        <td scope="row">50t armazenamento</td>
+                        <td scope="row">Aumento</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">15/11/2020</td>
+                        <td scope="row">6 caminhões</td>
+                        <td scope="row">Redução</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
