@@ -10,7 +10,7 @@ export class Pedido {
     nomeEmpPedinte: string
     nomeEmpAtendente: string
     tipoResiduo: string
-    quantidadeResiduo: string
+    quantidadeResiduo: number
     quantidadeCaminhoes: number
     dataPedido: string
     horaPedido: string
@@ -18,7 +18,7 @@ export class Pedido {
     tipoPedido: string // coleta || entrega
     status : string //aceito || recusado || pendente
 
-    constructor(nomeEmpPedinte: string, nomeEmpAtendente: string, tipoResiduo: string, quantidadeResiduo: string,
+    constructor(nomeEmpPedinte: string, nomeEmpAtendente: string, tipoResiduo: string, quantidadeResiduo: number,
         dataPedido: string, horaPedido: string, endereco: string, tipoPedido: string) {
         this.idPedido = 0
         this.nomeEmpPedinte = nomeEmpPedinte
@@ -119,3 +119,13 @@ export class PedidoDAO {
 }
 
 /* Implementar DAO semelhante para informações dos pedidos */
+
+export function ehValido(pedido: Pedido): boolean {
+    return (pedido.nomeEmpPedinte.trim() != "" &&
+        pedido.nomeEmpAtendente.trim() != "" &&
+        pedido.tipoResiduo.trim() != "" &&
+        pedido.quantidadeResiduo > 0 &&
+        pedido.dataPedido != "" &&
+        pedido.horaPedido != "" &&
+        pedido.endereco.trim() != "")
+}

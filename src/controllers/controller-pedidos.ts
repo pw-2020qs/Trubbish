@@ -46,14 +46,20 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
         tipoPedido)
 
     try {
-        const pedido = modelPed.PedidoDAO.buscarIntancia().inserir(novoPedido)
+        if (modelPed.ehValido(novoPedido)) {
+            const pedido = modelPed.PedidoDAO.buscarIntancia().inserir(novoPedido)
 
-        if (pedido) {
-            console.log("Pedido criado com successo")
-            res.redirect("/cliente")
-        }
-        else {
-            console.error("Houve algum erro no BD durante criação de pedido")
+            if (pedido) {
+                console.log("Pedido criado com successo")
+                res.redirect("/cliente")
+            }
+            else {
+                console.error("Houve algum erro no BD durante criação de pedido")
+                // redirecionar para página de erro
+            }
+        } else {
+            console.error("O pedido gerado possui campos inválidos")
+            // redirecionar para página de erro
         }
     } catch(err) {
         console.error("Houve algum erro na criação de um novo pedido")
