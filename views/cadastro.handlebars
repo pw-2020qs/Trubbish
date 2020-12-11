@@ -4,6 +4,15 @@
         <p class="card-text">
         <form action="/cadastro" method="post" enctype="multipart/form-data">
             {{> cadastro-form}}
+            
+            <div class="dropdown mb-3">
+                <h6>Tipo de usuário</h6>
+                <select name="tipoUsuario" class="btn btn-secondary dropdown-toggle" aria-placeholder="Ramo empresa">
+                    <option value="cliente">Cliente</option>
+                    <option value="coletor">Coletor</option>
+                    <option value="tratamento">Tratamento</option>
+                </select>
+            </div>
 
             <div class="input-group-md mb-3">
                 <button class="btn btn-secondary btn-lg btn-block" type="submit">Cadastrar</button>
