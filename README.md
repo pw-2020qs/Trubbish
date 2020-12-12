@@ -5,16 +5,27 @@
 3. Carregar o banco de dados inicial contido na pasta mongo/dbInicial.js no mongoDb
 4. Inicializar o servidor, utilizando o nodemon
 5. Cadastrar um novo usuário, selecionado o tipo (o tipo cliente é recomendado) ou utilizar um dos usuários já carregados no banco de dados:
+  
   Nome de usuário: cliente
+  
   Senha: cliente123
+  
   tipo de usuário: cliente
   
+  -------------------------
+  
   Nome de usuário: coletor
+  
   Senha: cliente123
+  
   tipo de usuário: coletor
   
+  -------------------------
+  
   Nome de usuário: tratamento
+  
   Senha: cliente123
+  
   tipo de usuário: tratamento
 
 # Requisitos
