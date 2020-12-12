@@ -1,7 +1,3 @@
-import { exception } from "console"
-import { response } from "express"
-import * as fs from "fs"
-import { Db } from "mongodb"
 import { config } from "../config"
 import * as dbConexao from "../db-conectar"
 import * as bcrypt from "bcrypt"
@@ -95,9 +91,9 @@ export class UsuarioDAO {
     async buscarEmpAtendente(nomeEmpresa: string) {
         try {
             const empresaAtendente = await this.buscarColecao().findOne({ nomeEmpresa: nomeEmpresa })
-            console.log("Teste Atual")
-            console.log(nomeEmpresa)
-            console.log(empresaAtendente)
+            // console.log("Teste Atual")
+            // console.log(nomeEmpresa)
+            // console.log(empresaAtendente)
             if (empresaAtendente){
                 return empresaAtendente as Usuario
             }

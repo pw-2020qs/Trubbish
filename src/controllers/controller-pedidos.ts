@@ -2,14 +2,6 @@ import e from "express"
 import * as modelUsr from "../models/model-usuarios"
 import * as modelPed from "../models/model-pedidos"
 
-const app = e()
-
-// export function clienteFirst(req: e.Request, res: e.Response) {
-
-
-//     res.render("cliente")
-// }
-
 export async function removerPedido(req: e.Request, res: e.Response) {
     modelPed.PedidoDAO.buscarIntancia().removerPedido(parseInt(req.params.id) || 0)
     res.redirect("/cliente")

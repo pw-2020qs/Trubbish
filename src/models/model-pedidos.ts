@@ -122,7 +122,7 @@ export class PedidoDAO {
                         pedidosFuturos.push(pedidos[i])
                 }
                 // const pedidosPassados = pedidos.filter( x => x.dataPedido.< (new Date().getDate))
-                console.log(pedidosFuturos)
+                // console.log(pedidosFuturos)
                 return pedidosFuturos as Pedido[]
             }
 

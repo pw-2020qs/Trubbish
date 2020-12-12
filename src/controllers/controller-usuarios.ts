@@ -3,33 +3,9 @@ import * as path from "path"
 import * as modelUsuario from "../models/model-usuarios"
 import * as modelPedido from "../models/model-pedidos"
 import { config } from "../config"
-import bodyParser from "body-parser"
-import hbs from "express-handlebars"
 import * as fs from "fs"
 import * as bcrypt from "bcrypt"
 import multipartyExpress from "multiparty-express"
-
-const STATIC_DIR = path.join(__dirname, '..', 'static')
-
-const app = e()
-
-app.engine("handlebars", hbs({
-    helpers: {
-        equals: (a: string, b: string) => a == b
-    }
-}))
-app.set("view engine", "handlebars")
-app.set("views", path.resolve(__dirname, "..", "views"))
-
-app.use(bodyParser.urlencoded({ extended: true }))
-
-
-/* Fazer redirecionamento para as telas dos demais tipos de perfils */
-app.use('/static', e.static(STATIC_DIR))
-
-app.get("/", (req, res) => {
-    res.redirect("/paginaPrincipal")
-})
 
 export function cadastro(req: e.Request, res: e.Response) {
     res.render("cadastro", { layout: "naoLogado.handlebars" })
