@@ -56,7 +56,7 @@ export async function criarPedidoCliente(req: e.Request, res: e.Response) {
             const pedido = modelPed.PedidoDAO.buscarIntancia().inserir(novoPedido)
 
             if (pedido) {
-                console.log("Pedido criado com successo")
+                //console.log("Pedido criado com successo")
                 res.redirect("/cliente")
             }
             else {

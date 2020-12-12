@@ -79,8 +79,8 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
 
         if (pedidoExibido) {
             const empresaEspecifica = await modelUsuario.UsuarioDAO.buscarIntancia().buscarEmpAtendente(pedidoExibido.nomeEmpAtendente)
-            console.log("Empresa do pedido:")
-            console.log(empresaEspecifica)
+            //console.log("Empresa do pedido:")
+            //console.log(empresaEspecifica)
             let empresaExibida: modelUsuario.Usuario
 
             if (empresaEspecifica) {
@@ -89,7 +89,7 @@ export async function cliHistoricoPedidos(req: e.Request, res: e.Response) {
                 empresaExibida = modelUsuario.gerarEmpresaVazia()
             }
 
-            console.log("TESTE CARREGAMENTO")
+            //console.log("TESTE CARREGAMENTO")
             res.render("cliHistoricoPedidos", {
                 layout: "main.handlebars",
                 pedidos: pedidos,
@@ -225,16 +225,16 @@ export function tratCapacidadeTratamento(req: e.Request, res: e.Response) {
 
 /* Verifica se o usuário existe no banco de dados. Em caso positivos, verifica a senha e o levar para a tela adequada ao tipo de usuário dele */
 export async function login(req: e.Request, res: e.Response) {
-    console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
+    //console.log("Login: " + req.body.usuario + " senha: " + req.body.senha)
 
-    console.log("Usuário encontrado?")
+    //console.log("Usuário encontrado?")
     const usuario = await modelUsuario.UsuarioDAO.buscarIntancia().buscarUsuario(req.body.usuario)
     if (!usuario) {
-        console.log("Não encontrado")
+        //console.log("Não encontrado")
         res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
     }
     else {
-        console.log("Usuário encontrado!")
+        //console.log("Usuário encontrado!")
 
         if (await bcrypt.compare(req.body.senha, usuario.senha)) {
             req.session.autenticado = true
@@ -249,13 +249,13 @@ export async function login(req: e.Request, res: e.Response) {
                 res.redirect("/coletor")
             else
                 res.redirect("/tratamento")
-            console.log("Senha correta")
+            //console.log("Senha correta")
         }
         /* Caso a senha esteja incorreta ou o usuário não exista, retorna para a o menu principal */
         else {
             req.session.autenticado = false
             res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: true })
-            console.log("Senha incorreta")
+            //console.log("Senha incorreta")
         }
 
     }
@@ -278,7 +278,7 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
             if (file && fileInfo.isFile() && fileInfo.size > 0) {
                 const filename = path.basename(file.path)
                 const newPath = path.join(config.upload_dir, filename)
-                console.log("copiando arquivo")
+                //console.log("copiando arquivo")
                 await fs.promises.copyFile(file.path, newPath)
 
                 return filename
@@ -311,16 +311,16 @@ export async function cadastrarUsuario(req: e.Request, res: e.Response) {
         , avatarPerfil
         , tipoUsuario)
 
-    console.log(req.files)
+    //console.log(req.files)
     try {
 
         if ("picture" in req.files) {
-            console.log("salvando")
+            //console.log("salvando")
             profile.avatarPerfil =
                 await saveProfilePicture(req.files["picture"].pop())
         }
-        console.log("Inserindo usuário")
-        console.log(profile)
+        //console.log("Inserindo usuário")
+        //console.log(profile)
         await modelUsuario.UsuarioDAO.buscarIntancia().inserir(profile)
         res.redirect("/")
 
@@ -342,7 +342,7 @@ export async function atualizaCadastro(req: e.Request, res: e.Response) {
             if (file && fileInfo.isFile() && fileInfo.size > 0) {
                 const filename = path.basename(file.path)
                 const newPath = path.join(config.upload_dir, filename)
-                console.log("copiando arquivo")
+                //console.log("copiando arquivo")
                 await fs.promises.copyFile(file.path, newPath)
 
                 return filename
@@ -378,16 +378,16 @@ export async function atualizaCadastro(req: e.Request, res: e.Response) {
         , avatarPerfil
         , tipoUsuario)
 
-    console.log(req.files)
+    //console.log(req.files)
     try {
-        console.log("chegou aqui")
+        //console.log("chegou aqui")
         if ("picture" in req.files) {
-            console.log("salvando")
+            //console.log("salvando")
             profile.avatarPerfil =
                 await saveProfilePicture(req.files["picture"].pop())
         }
-        console.log("Atualizando usuário")
-        console.log(profile)
+        //console.log("Atualizando usuário")
+        //console.log(profile)
         await modelUsuario.UsuarioDAO.buscarIntancia().atualizarCadatro(profile)
         res.redirect("/")
 
@@ -399,7 +399,7 @@ export async function atualizaCadastro(req: e.Request, res: e.Response) {
 }
 
 export function paginaPrincipal(req: e.Request, res: e.Response) {
-    console.log("Página principal")
+    //console.log("Página principal")
     res.render("paginaPrincipal", { layout: "naoLogado.handlebars", tentouSenhaIncorreta: false })
 }
 
