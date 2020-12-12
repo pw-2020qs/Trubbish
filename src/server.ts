@@ -117,6 +117,8 @@ app.get("/cliColetasAgendadas/:id", autenticar, verificarTipoCliente, controller
 
 app.get("/cliHistoricoPedidos/:id", autenticar, verificarTipoCliente, controllerUsuario.cliHistoricoPedidos)
 
+app.get("/remover/:id", autenticar, verificarTipoCliente, controllerPed.removerPedido)
+
 app.get("/alterarCadastro", autenticar, controllerUsuario.alterarCadastro)
 
 app.get("/cliNovoPedido", autenticar, verificarTipoCliente, controllerUsuario.cliNovoPedido)

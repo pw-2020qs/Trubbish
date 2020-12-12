@@ -10,6 +10,11 @@ const app = e()
 //     res.render("cliente")
 // }
 
+export async function removerPedido(req: e.Request, res: e.Response) {
+    modelPed.PedidoDAO.buscarIntancia().removerPedido(parseInt(req.params.id) || 0)
+    res.redirect("/cliente")
+}
+
 export async function criarPedidoCliente(req: e.Request, res: e.Response) {
     const nomeUsuario = (req.session.nomeUsuario) ? (req.session.nomeUsuario) : ""
 

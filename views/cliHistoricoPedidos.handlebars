@@ -16,7 +16,9 @@
             <div class="card-text">
                 {{> informacoes-coleta}}
                 <div class="text-center">
-                    <button class="btn btn-outline-light" type="submit" style="background-color: #E7B756;">Remover do histórico</button>
+                    <form class="form-inline-center" method="get" action="/remover/{{pedido.idPedido}}">
+                        <button class="btn btn-outline-light" type="submit"  style="background-color: #E7B756;">Remover do Histórico</button>
+                    </form>
                 </div>
             </div>
         </div>
